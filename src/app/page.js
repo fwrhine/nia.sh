@@ -1,16 +1,153 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import { Box, Text } from "@chakra-ui/react";
+"use client";
+
+/*
+ * Built overnight in an upper nest in Soho.
+ * September 14–15, 2026.
+ *
+ * £60 and a dream.
+ */
+
+import { Experience } from "@/components/experience";
+import { Help } from "@/components/help";
+import { WhoAmI } from "@/components/whoami";
+import { getLoginTime } from "@/utils/date";
+import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <Box bgColor="black" h="100vh" w="100vw">
-      <Text color="white">Hello</Text>
-    </Box>
-    // <div className={styles.page}>
-    //   <main className={styles.main}>
+  const loginTime = getLoginTime();
 
-    //   </main>
-    // </div>
+  // Input
+  const [input, setInput] = useState("");
+  const [history, setHistory] = useState([
+    {
+      command: "whoami",
+      output: (
+        <>
+          <WhoAmI />
+        </>
+      ),
+    },
+  ]);
+
+  const executeCommand = (command) => {
+    command = command.trim().toLowerCase();
+
+    let output;
+
+    switch (command) {
+      case "whoami":
+        output = (
+          <>
+            <WhoAmI />
+          </>
+        );
+        break;
+
+      case "experience":
+        output = (
+          <>
+            <Experience />
+          </>
+        );
+        break;
+
+      case "help":
+        output = (
+          <>
+            <Help />
+          </>
+        );
+        break;
+
+      case "origin":
+        output = (
+          <>
+            <Stack gap={0}>
+              <Text>Built overnight in an upper nest in Soho</Text>
+              <Text>September 14–15, 2026</Text>
+              <br />
+              <Text fontStyle="italic" color="#ae83ac">
+                <Text as="span" color="#dadab3">
+                  𖥔
+                </Text>{" "}
+                £60 and a dream{" "}
+                <Text as="span" color="#dadab3">
+                  𖥔
+                </Text>
+              </Text>
+            </Stack>
+          </>
+        );
+        break;
+
+      case "clear":
+        setHistory([]);
+        return;
+
+      default:
+        output = <Text color="red.300">Command not found: {command}</Text>;
+    }
+
+    setHistory((prev) => [
+      ...prev,
+      {
+        command,
+        output,
+      },
+    ]);
+  };
+
+  const prompt = (
+    <>
+      <Text whiteSpace="pre">
+        <Text as="span" color="#9db390">
+          nia@localhost
+        </Text>
+        <Text as="span" color="#538072">
+          :~$
+        </Text>{" "}
+      </Text>
+    </>
+  );
+
+  return (
+    <Box h="100vh" w="100vw">
+      <Stack padding={5}>
+        <Text>Last login: {loginTime} </Text>
+        {history.map((entry, index) => (
+          <Box key={index}>
+            <HStack gap={0}>
+              {prompt}
+              <Text>{entry.command}</Text>
+            </HStack>
+
+            {entry.output}
+          </Box>
+        ))}
+        <HStack gap={0}>
+          {prompt}
+
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                executeCommand(input);
+                setInput("");
+              }
+            }}
+            style={{
+              background: "transparent",
+              border: "none",
+              outline: "none",
+              color: "#fff",
+              font: "inherit",
+              flex: 1,
+            }}
+          />
+        </HStack>
+      </Stack>
+    </Box>
   );
 }
