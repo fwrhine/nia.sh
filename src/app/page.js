@@ -19,16 +19,7 @@ export default function Home() {
 
   // Input
   const [input, setInput] = useState("");
-  const [history, setHistory] = useState([
-    {
-      command: "whoami",
-      output: (
-        <>
-          <WhoAmI />
-        </>
-      ),
-    },
-  ]);
+  const [history, setHistory] = useState([]);
 
   const executeCommand = (command) => {
     command = command.trim().toLowerCase();
@@ -44,7 +35,7 @@ export default function Home() {
         );
         break;
 
-      case "experience":
+      case "work":
         output = (
           <>
             <Experience />
@@ -68,13 +59,7 @@ export default function Home() {
               <Text>September 14–15, 2026</Text>
               <br />
               <Text fontStyle="italic" color="#ae83ac">
-                <Text as="span" color="#dadab3">
-                  𖥔
-                </Text>{" "}
-                £60 and a dream{" "}
-                <Text as="span" color="#dadab3">
-                  𖥔
-                </Text>
+                £60 and a dream
               </Text>
             </Stack>
           </>
@@ -100,7 +85,7 @@ export default function Home() {
 
   const prompt = (
     <>
-      <Text whiteSpace="pre">
+      <Text whiteSpace="pre" paddingY={5}>
         <Text as="span" color="#9db390">
           nia@localhost
         </Text>
@@ -115,6 +100,17 @@ export default function Home() {
     <Box h="100vh" w="100vw">
       <Stack padding={5}>
         <Text>Last login: {loginTime} </Text>
+        <Stack gap={0}>
+          <Text>Welcome to nia.sh</Text>
+          <Text>
+            Type{" "}
+            <Text as="span" color="#a55f6d">
+              `help`
+            </Text>{" "}
+            to see what you can do here.
+          </Text>
+        </Stack>
+
         {history.map((entry, index) => (
           <Box key={index}>
             <HStack gap={0}>
