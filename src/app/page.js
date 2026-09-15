@@ -1,5 +1,6 @@
 "use client";
 
+import { Window } from "@/components/desktop/window";
 import { Terminal } from "@/components/terminal/terminal";
 
 /*
@@ -10,5 +11,14 @@ import { Terminal } from "@/components/terminal/terminal";
  */
 
 export default function Home() {
-  return <Terminal />;
+  return (
+    <Window
+      title="Terminal"
+      defaultPosition={{ x: 80, y: 60 }}
+      width="900px"
+      height="700px"
+    >
+      <Terminal />
+    </Window>
+  );
 }
