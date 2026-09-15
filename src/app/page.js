@@ -9,6 +9,7 @@
 
 import { Experience } from "@/components/experience";
 import { Help } from "@/components/help";
+import { Projects } from "@/components/projects";
 import { WhoAmI } from "@/components/whoami";
 import { getLoginTime } from "@/utils/date";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
@@ -39,6 +40,14 @@ export default function Home() {
         output = (
           <>
             <Experience />
+          </>
+        );
+        break;
+
+      case "projects":
+        output = (
+          <>
+            <Projects />
           </>
         );
         break;
