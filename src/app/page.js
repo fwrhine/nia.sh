@@ -19,77 +19,95 @@ export default function Home() {
   const loginTime = getLoginTime();
 
   // Input
-  const [input, setInput] = useState("");
   const [history, setHistory] = useState([]);
+  const [commandHistory, setCommandHistory] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [input, setInput] = useState("");
+
+  const renderCommand = (command) => {
+    switch (command) {
+      case "whoami":
+        return <WhoAmI />;
+
+      case "work":
+        return <Experience />;
+
+      case "projects":
+        return <Projects />;
+
+      case "help":
+        return <Help />;
+
+      case "origin":
+        return (
+          <Stack gap={0}>
+            <Text>Built overnight in an upper nest in Soho</Text>
+            <Text>September 14–15, 2026</Text>
+            <br />
+            <Text fontStyle="italic" color="#ae83ac">
+              £60 and a dream
+            </Text>
+          </Stack>
+        );
+
+      default:
+        return <Text color="red.300">Command not found: {command}</Text>;
+    }
+  };
 
   const executeCommand = (command) => {
     command = command.trim().toLowerCase();
 
-    let output;
+    if (!command) return;
 
-    switch (command) {
-      case "whoami":
-        output = (
-          <>
-            <WhoAmI />
-          </>
-        );
-        break;
-
-      case "work":
-        output = (
-          <>
-            <Experience />
-          </>
-        );
-        break;
-
-      case "projects":
-        output = (
-          <>
-            <Projects />
-          </>
-        );
-        break;
-
-      case "help":
-        output = (
-          <>
-            <Help />
-          </>
-        );
-        break;
-
-      case "origin":
-        output = (
-          <>
-            <Stack gap={0}>
-              <Text>Built overnight in an upper nest in Soho</Text>
-              <Text>September 14–15, 2026</Text>
-              <br />
-              <Text fontStyle="italic" color="#ae83ac">
-                £60 and a dream
-              </Text>
-            </Stack>
-          </>
-        );
-        break;
-
-      case "clear":
-        setHistory([]);
-        return;
-
-      default:
-        output = <Text color="red.300">Command not found: {command}</Text>;
+    if (command === "clear") {
+      setHistory([]);
+      setCommandHistory([]);
+      setHistoryIndex(-1);
+      return;
     }
 
-    setHistory((prev) => [
-      ...prev,
-      {
-        command,
-        output,
-      },
-    ]);
+    setCommandHistory((prev) => [...prev, command]);
+    setHistoryIndex(-1);
+
+    setHistory((prev) => [...prev, command]);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+
+      if (commandHistory.length === 0) return;
+
+      const newIndex =
+        historyIndex === -1
+          ? commandHistory.length - 1
+          : Math.max(0, historyIndex - 1);
+
+      setHistoryIndex(newIndex);
+      setInput(commandHistory[newIndex]);
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+
+      if (historyIndex === -1) return;
+
+      if (historyIndex === commandHistory.length - 1) {
+        setHistoryIndex(-1);
+        setInput("");
+      } else {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      }
+    }
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+      executeCommand(input);
+      setInput("");
+    }
   };
 
   const prompt = (
@@ -120,14 +138,14 @@ export default function Home() {
           </Text>
         </Stack>
 
-        {history.map((entry, index) => (
+        {history.map((command, index) => (
           <Box key={index}>
             <HStack gap={0}>
               {prompt}
-              <Text>{entry.command}</Text>
+              <Text>{command}</Text>
             </HStack>
 
-            {entry.output}
+            {renderCommand(command)}
           </Box>
         ))}
         <HStack gap={0}>
@@ -136,12 +154,7 @@ export default function Home() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                executeCommand(input);
-                setInput("");
-              }
-            }}
+            onKeyDown={handleKeyDown}
             style={{
               background: "transparent",
               border: "none",
