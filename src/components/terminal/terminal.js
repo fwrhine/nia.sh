@@ -4,10 +4,15 @@ import { Projects } from "@/components/terminal/commands/projects";
 import { WhoAmI } from "@/components/terminal/commands/whoami";
 import { getLoginTime } from "@/utils/date";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Terminal({}) {
-  const loginTime = getLoginTime();
+  // Login time
+  const [loginTime, setLoginTime] = useState("");
+
+  useEffect(() => {
+    setLoginTime(getLoginTime());
+  }, []);
 
   // Input
   const [history, setHistory] = useState([]);
