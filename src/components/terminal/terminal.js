@@ -4,9 +4,11 @@ import { Projects } from "@/components/terminal/commands/projects";
 import { WhoAmI } from "@/components/terminal/commands/whoami";
 import { getLoginTime } from "@/utils/date";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Terminal({}) {
+  const terminalRef = useRef(null);
+
   // Login time
   const [loginTime, setLoginTime] = useState("");
 
@@ -119,8 +121,17 @@ export function Terminal({}) {
     </>
   );
 
+  useEffect(() => {
+    if (!terminalRef.current) return;
+
+    terminalRef.current.scrollTo({
+      top: terminalRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [history]);
+
   return (
-    <Box h="100vh" w="100vw">
+    <Box ref={terminalRef} h="100%" overflowY="auto">
       <Stack padding={5}>
         <Text>Last login: {loginTime} </Text>
         <Stack gap={0}>
