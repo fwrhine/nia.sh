@@ -11,6 +11,7 @@ import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 
 export function Terminal({}) {
   const terminalRef = useRef(null);
+  const inputRef = useRef(null);
 
   // Login time
   const [loginTime, setLoginTime] = useState("");
@@ -102,6 +103,10 @@ export function Terminal({}) {
     }
   };
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   const prompt = (
     <>
       <Text whiteSpace="pre" paddingY={5}>
@@ -125,7 +130,12 @@ export function Terminal({}) {
   }, [history]);
 
   return (
-    <Box ref={terminalRef} h="100%" overflowY="auto">
+    <Box
+      ref={terminalRef}
+      h="100%"
+      overflowY="auto"
+      onClick={() => inputRef.current?.focus()}
+    >
       <Stack padding={9}>
         <Text>Last login: {loginTime} </Text>
         <Stack gap={0}>
@@ -153,6 +163,7 @@ export function Terminal({}) {
           {prompt}
 
           <input
+            ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
