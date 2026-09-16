@@ -124,7 +124,7 @@ export function Terminal({}) {
 
   return (
     <Box ref={terminalRef} h="100%" overflowY="auto">
-      <Stack padding={5}>
+      <Stack padding={9}>
         <Text>Last login: {loginTime} </Text>
         <Stack gap={0}>
           <Text>Welcome to nia.sh</Text>

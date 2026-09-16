@@ -67,8 +67,7 @@ export function Window({
       width={width}
       height={height}
       bg="#1b1b1b"
-      border="1px solid #444"
-      borderRadius="md"
+      border="3px solid #b7aeaa"
       overflow="hidden"
     >
       {/* Title bar */}
@@ -77,7 +76,10 @@ export function Window({
         px={3}
         align="center"
         justify="space-between"
-        bg="#2b2b2b"
+        bg="#968887"
+        border="2px solid #5f5858"
+        borderBottomColor={"#b7aeaa"}
+        borderRightColor="#968887"
         cursor="grab"
         userSelect="none"
         onMouseDown={(e) => {
@@ -87,11 +89,13 @@ export function Window({
           drag.current.offsetY = e.clientY - positionRef.current.y;
         }}
       >
-        <Text fontSize="sm">{title}</Text>
+        <Text fontSize="sm" color="black" fontWeight="500">
+          {title}
+        </Text>
       </Flex>
 
       {/* Window content */}
-      <Box p={4} h="calc(100% - 36px)" overflowY="auto">
+      <Box h="calc(100% - 36px)" overflowY="auto" borderTop="none">
         {children}
       </Box>
     </Box>
