@@ -1,11 +1,13 @@
+import { useEffect, useRef, useState } from "react";
+import { getLoginTime } from "@/utils/date";
+
 import { Experience } from "@/components/terminal/commands/experience";
 import { Help } from "@/components/terminal/commands/help";
 import { Projects } from "@/components/terminal/commands/projects";
 import { WhoAmI } from "@/components/terminal/commands/whoami";
-import { getLoginTime } from "@/utils/date";
-import { Box, HStack, Stack, Text } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
 import { Origin } from "./commands/origin";
+
+import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 
 export function Terminal({}) {
   const terminalRef = useRef(null);
