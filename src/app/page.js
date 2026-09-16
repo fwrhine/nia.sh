@@ -4,8 +4,8 @@ import { Window } from "@/components/desktop/window";
 import { Terminal } from "@/components/terminal/terminal";
 
 /*
- * Built overnight in an upper nest in Soho.
- * September 14–15, 2026.
+ * Built in an upper nest in Soho.
+ * September 2026.
  *
  * £60 and a dream.
  */
@@ -13,7 +13,7 @@ import { Terminal } from "@/components/terminal/terminal";
 export default function Home() {
   return (
     <Window
-      title="Terminal"
+      title="nia.sh"
       defaultPosition={{ x: 80, y: 60 }}
       width="900px"
       height="700px"

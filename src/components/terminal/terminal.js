@@ -5,6 +5,7 @@ import { WhoAmI } from "@/components/terminal/commands/whoami";
 import { getLoginTime } from "@/utils/date";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
+import { Origin } from "./commands/origin";
 
 export function Terminal({}) {
   const terminalRef = useRef(null);
@@ -37,16 +38,7 @@ export function Terminal({}) {
         return <Help />;
 
       case "origin":
-        return (
-          <Stack gap={0}>
-            <Text>Built overnight in an upper nest in Soho</Text>
-            <Text>September 14–15, 2026</Text>
-            <br />
-            <Text fontStyle="italic" color="#ae83ac">
-              £60 and a dream
-            </Text>
-          </Stack>
-        );
+        return <Origin />;
 
       default:
         return <Text color="red.300">Command not found: {command}</Text>;
