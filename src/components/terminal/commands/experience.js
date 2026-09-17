@@ -13,7 +13,13 @@ export function Experience({}) {
         <Text>Research Assistant</Text>
         <Text>@ UCL GDI Hub</Text>
       </Grid>
-      <Text color="#D6B56D">→ download my cv</Text>
+      <Text>
+        Type{" "}
+        <Text as="span" color="#a55f6d">
+          `cv`
+        </Text>{" "}
+        to download my résumé.
+      </Text>
     </Stack>
   );
 }

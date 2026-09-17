@@ -22,7 +22,7 @@ export function Desktop() {
       x: 170,
       y: 120,
       width: 700,
-      height: 600,
+      height: 570,
       component: Terminal,
       props: {},
       accessory: <CatWidget />,

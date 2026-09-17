@@ -23,7 +23,7 @@ export function Projects({}) {
         <Text color={color}>If on a winter's night a traveler ...</Text>
       </Grid>
 
-      <Text>Click a project or type "project &lsaquo;number&rsaquo;</Text>
+      <Text>Type "project &lsaquo;number&rsaquo;" for more details.</Text>
     </Stack>
   );
 }

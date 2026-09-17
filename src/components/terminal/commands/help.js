@@ -12,7 +12,10 @@ export function Help({}) {
         <Text color={color}>work</Text>
         <Text>- work experience</Text>
 
-         <Text color={color}>projects</Text>
+        <Text color={color}>cv</Text>
+        <Text>- download my cv</Text>
+
+        <Text color={color}>projects</Text>
         <Text>- explore my projects</Text>
 
         <Text color={color}>contact</Text>
