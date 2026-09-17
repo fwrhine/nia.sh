@@ -5,6 +5,7 @@ import { CatWidget } from "../widgets/cat";
 import { Window } from "./window";
 import { ReadingListWidget } from "../widgets/reading-list";
 import { Box, Text } from "@chakra-ui/react";
+import { BootScreen } from "./boot";
 
 const DESKTOP_WIDTH = 1400;
 const DESKTOP_HEIGHT = 900;
@@ -78,68 +79,71 @@ export function Desktop() {
     };
 
     updateLayout();
-    setReady(true);
+    setTimeout(() => {
+      setReady(true);
+    }, 3150);
 
     window.addEventListener("resize", updateLayout);
 
     return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
-  if (!ready) return null;
-
-  if (isMobile) {
-    return <Text>Nothing!</Text>;
-  }
-
   return (
     <>
-      <Box
-        w="100vw"
-        h="100vh"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        overflow="hidden"
-      >
-        <Box
-          position="relative"
-          w={`${DESKTOP_WIDTH}px`}
-          h={`${DESKTOP_HEIGHT}px`}
-          transform={`scale(${scale})`}
-          transformOrigin="center"
-          overflow="hidden"
-          onMouseDown={() => {
-            setActiveWindowId(null);
-            setActivationId((prev) => prev + 1);
-          }}
-        >
-          {windows.map((window) => {
-            const Component = window.component;
+      {!ready && <BootScreen />}
 
-            return (
-              <Window
-                key={window.id}
-                title={window.title}
-                accessory={window.accessory}
-                defaultPosition={{
-                  x: window.x,
-                  y: window.y,
-                }}
-                width={`${window.width}px`}
-                height={`${window.height}px`}
-                focused={window.id === activeWindowId}
-                onFocus={() => activateWindow(window.id)}
-              >
-                <Component
-                  {...window.props}
-                  focused={window.id === activeWindowId}
-                  activationId={activationId}
-                />
-              </Window>
-            );
-          })}
-        </Box>
-      </Box>
+      {ready &&
+        (isMobile ? (
+          <Text>Nothing!</Text>
+        ) : (
+          <Box
+            w="100vw"
+            h="100vh"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            overflow="hidden"
+          >
+            <Box
+              position="relative"
+              w={`${DESKTOP_WIDTH}px`}
+              h={`${DESKTOP_HEIGHT}px`}
+              transform={`scale(${scale})`}
+              transformOrigin="center"
+              overflow="hidden"
+              onMouseDown={() => {
+                setActiveWindowId(null);
+                setActivationId((prev) => prev + 1);
+              }}
+            >
+              {windows.map((window) => {
+                const Component = window.component;
+
+                return (
+                  <Window
+                    key={window.id}
+                    title={window.title}
+                    accessory={window.accessory}
+                    defaultPosition={{
+                      x: window.x,
+                      y: window.y,
+                    }}
+                    width={`${window.width}px`}
+                    height={`${window.height}px`}
+                    focused={window.id === activeWindowId}
+                    onFocus={() => activateWindow(window.id)}
+                  >
+                    <Component
+                      {...window.props}
+                      focused={window.id === activeWindowId}
+                      activationId={activationId}
+                    />
+                  </Window>
+                );
+              })}
+            </Box>
+          </Box>
+        ))}
     </>
   );
 }
