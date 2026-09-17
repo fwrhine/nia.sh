@@ -1,9 +1,9 @@
 import { Box, Image } from "@chakra-ui/react";
 
-export function ImageWidget() {
+export function ImageWidget({ src }) {
   return (
-    <Box>
-      <Image src="/images/girl_1.jpg" height="150px" width="150px" />
+    <Box border="1px solid black">
+      <Image src={src} height="150px" width="150px" />
     </Box>
   );
 }

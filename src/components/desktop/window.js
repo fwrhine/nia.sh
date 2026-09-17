@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 export function Window({
   title,
   children,
+  accessory,
   defaultPosition = { x: 100, y: 100 },
   width = "800px",
   height = "600px",
@@ -59,44 +60,59 @@ export function Window({
 
   return (
     <Box
-      ref={windowRef}
       position="absolute"
       left={0}
       top={0}
       transform={`translate(${position.x}px, ${position.y}px)`}
-      width={width}
-      height={height}
-      bg="#1b1b1b"
-      border="3px solid #b7aeaa"
-      overflow="hidden"
     >
-      {/* Title bar */}
-      <Flex
-        h="36px"
-        px={3}
-        align="center"
-        justify="space-between"
-        bg="#968887"
-        border="2px solid #5f5858"
-        borderBottomColor={"#b7aeaa"}
-        borderRightColor="#968887"
-        cursor="grab"
-        userSelect="none"
-        onMouseDown={(e) => {
-          drag.current.dragging = true;
-          drag.current.offsetX = e.clientX - positionRef.current.x;
-
-          drag.current.offsetY = e.clientY - positionRef.current.y;
-        }}
+      {/* Window decoration */}
+      {accessory && (
+        <Box
+          position="absolute"
+          top="-26px"
+          right="36px"
+          zIndex={100}
+          pointerEvents="none"
+        >
+          {accessory}
+        </Box>
+      )}
+      <Box
+        ref={windowRef}
+        width={width}
+        height={height}
+        bg="#1b1b1b"
+        border="3px solid #b7aeaa"
+        overflow="hidden"
       >
-        <Text fontSize="sm" color="black" fontWeight="500">
-          {title}
-        </Text>
-      </Flex>
+        {/* Title bar */}
+        <Flex
+          h="36px"
+          px={3}
+          align="center"
+          justify="space-between"
+          bg="#968887"
+          border="2px solid #5f5858"
+          borderBottomColor={"#b7aeaa"}
+          borderRightColor="#968887"
+          cursor="grab"
+          userSelect="none"
+          onMouseDown={(e) => {
+            drag.current.dragging = true;
+            drag.current.offsetX = e.clientX - positionRef.current.x;
 
-      {/* Window content */}
-      <Box h="calc(100% - 36px)" overflowY="auto" borderTop="none">
-        {children}
+            drag.current.offsetY = e.clientY - positionRef.current.y;
+          }}
+        >
+          <Text fontSize="sm" color="black" fontWeight="500">
+            {title}
+          </Text>
+        </Flex>
+
+        {/* Window content */}
+        <Box h="calc(100% - 36px)" overflowY="auto">
+          {children}
+        </Box>
       </Box>
     </Box>
   );

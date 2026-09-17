@@ -1,8 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { Terminal } from "../terminal/terminal";
 import { ImageWidget } from "../widgets/image";
 import { Window } from "./window";
+import { CatWidget } from "../widgets/cat";
 
 export function Desktop() {
   const [windows, setWindows] = useState([]);
@@ -22,6 +22,7 @@ export function Desktop() {
         width: 800,
         height: 700,
         component: <Terminal />,
+        accessory: <CatWidget />,
       },
       {
         id: "imageWidget",
@@ -30,7 +31,7 @@ export function Desktop() {
         y: 60,
         width: 150,
         height: 186,
-        component: <ImageWidget />,
+        component: <ImageWidget src="/images/girl-1.jpg" />,
       },
     ]);
   }, []);
@@ -43,6 +44,7 @@ export function Desktop() {
         <Window
           key={window.id}
           title={window.title}
+          accessory={window.accessory}
           defaultPosition={{
             x: window.x,
             y: window.y,
