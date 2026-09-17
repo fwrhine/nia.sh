@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 
 export function Window({
@@ -94,9 +94,9 @@ export function Window({
         {/* Title bar */}
         <Flex
           h="36px"
-          px={3}
           align="center"
           justify="space-between"
+          padding={1}
           bg="#968887"
           border="2px solid #5f5858"
           borderBottomColor={"#b7aeaa"}
@@ -110,9 +110,24 @@ export function Window({
             drag.current.offsetY = e.clientY - positionRef.current.y;
           }}
         >
-          <Text fontSize="sm" color="black" fontWeight="500">
+          <Text fontSize="sm" color="black" fontWeight="500" paddingLeft={2}>
             {title}
           </Text>
+          <Box
+            w="22px"
+            h="22px"
+            bg="#968887"
+            display="flex"
+            alignItems="center"
+            cursor="pointer"
+            justifyContent="center"
+            borderTop="2px solid #d8d0d0"
+            borderLeft="2px solid #d8d0d0"
+            borderRight="2px solid #5f5858"
+            borderBottom="2px solid #5f5858"
+          >
+            <Image src="/images/icons/close.png" />
+          </Box>
         </Flex>
 
         {/* Window content */}

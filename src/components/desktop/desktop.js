@@ -4,8 +4,10 @@ import { ImageWidget } from "../widgets/image";
 import { CatWidget } from "../widgets/cat";
 import { Window } from "./window";
 import { ReadingListWidget } from "../widgets/reading-list";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Image, Text } from "@chakra-ui/react";
 import { BootScreen } from "./boot";
+import { Wallpaper } from "./wallpaper";
+import { Dock } from "./dock";
 
 const DESKTOP_WIDTH = 1400;
 const DESKTOP_HEIGHT = 900;
@@ -29,12 +31,12 @@ export function Desktop() {
       id: "imageWidget",
       title: "girl.jpg",
       x: 1050,
-      y: 50,
+      y: 60,
       width: 150,
       height: 186,
       component: ImageWidget,
       props: {
-        src: "/images/girl-1.jpg",
+        src: "/images/girl/girl-1.jpg",
       },
     },
     {
@@ -116,6 +118,10 @@ export function Desktop() {
                 setActivationId((prev) => prev + 1);
               }}
             >
+              {/* Wallpapers */}
+              {/* <Wallpaper /> */}
+
+              {/* Windows */}
               {windows.map((window) => {
                 const Component = window.component;
 
@@ -141,6 +147,9 @@ export function Desktop() {
                   </Window>
                 );
               })}
+
+              {/* Dock */}
+              <Dock />
             </Box>
           </Box>
         ))}
