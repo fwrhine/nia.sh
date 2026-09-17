@@ -9,6 +9,7 @@ import { Origin } from "./commands/origin";
 
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { List } from "./commands/ls";
+import { Contact } from "./commands/contact";
 
 export function Terminal({ focused, activationId }) {
   const terminalRef = useRef(null);
@@ -58,6 +59,9 @@ export function Terminal({ focused, activationId }) {
 
       case "help":
         return <Help />;
+
+      case "contact":
+        return <Contact />;
 
       case "origin":
         return <Origin />;
