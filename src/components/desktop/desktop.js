@@ -56,37 +56,46 @@ export function Desktop() {
       <Box
         w="100vw"
         h="100vh"
-        position="relative"
-        onMouseDown={() => {
-          setActiveWindowId(null);
-          setActivationId((prev) => prev + 1);
-        }}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
       >
-        {windows.map((window) => {
-          const Component = window.component;
+        <Box
+          w="1400px"
+          h="900px"
+          overflow="hidden"
+          position="relative"
+          onMouseDown={() => {
+            setActiveWindowId(null);
+            setActivationId((prev) => prev + 1);
+          }}
+        >
+          {windows.map((window) => {
+            const Component = window.component;
 
-          return (
-            <Window
-              key={window.id}
-              title={window.title}
-              accessory={window.accessory}
-              defaultPosition={{
-                x: window.x,
-                y: window.y,
-              }}
-              width={`${window.width}px`}
-              height={`${window.height}px`}
-              focused={window.id === activeWindowId}
-              onFocus={() => activateWindow(window.id)}
-            >
-              <Component
-                {...window.props}
+            return (
+              <Window
+                key={window.id}
+                title={window.title}
+                accessory={window.accessory}
+                defaultPosition={{
+                  x: window.x,
+                  y: window.y,
+                }}
+                width={`${window.width}px`}
+                height={`${window.height}px`}
                 focused={window.id === activeWindowId}
-                activationId={activationId}
-              />
-            </Window>
-          );
-        })}
+                onFocus={() => activateWindow(window.id)}
+              >
+                <Component
+                  {...window.props}
+                  focused={window.id === activeWindowId}
+                  activationId={activationId}
+                />
+              </Window>
+            );
+          })}
+        </Box>
       </Box>
     </>
   );
