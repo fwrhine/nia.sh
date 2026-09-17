@@ -12,8 +12,8 @@ export function ReadingListWidget({ focused, activationId }) {
       title: "If on a winter's night a traveler",
     },
     {
-      checked: true,
-      title: "Gentlemen Prefer Blondes",
+      checked: false,
+      title: "You Only Live Twice",
     },
     {
       checked: false,
