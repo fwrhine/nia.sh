@@ -1,7 +1,7 @@
 import { Grid, Stack, Text } from "@chakra-ui/react";
 
 export function Help({}) {
-  const color = "#ae83ac";
+  const color = "#B38BB4";
   return (
     <Stack>
       <Text>Available commands: </Text>
@@ -13,7 +13,7 @@ export function Help({}) {
         <Text>- work experience</Text>
 
         <Text color={color}>cv</Text>
-        <Text>- download my cv</Text>
+        <Text>- download my resume</Text>
 
         <Text color={color}>projects</Text>
         <Text>- explore my projects</Text>

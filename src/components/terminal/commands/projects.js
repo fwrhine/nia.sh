@@ -1,7 +1,7 @@
 import { Grid, Stack, Text } from "@chakra-ui/react";
 
 export function Projects({}) {
-  const color = "#ae83ac";
+  const color = "white";
   const subColor = "#D6B56D";
 
   return (
@@ -23,7 +23,13 @@ export function Projects({}) {
         <Text color={color}>If on a winter's night a traveler ...</Text>
       </Grid>
 
-      <Text>Type "project &lsaquo;number&rsaquo;" for more details.</Text>
+      <Text color="#efd8ea">
+        Type{" "}
+        <Text as="span" color="#B38BB4">
+          `project &lsaquo;number&rsaquo;`
+        </Text>{" "}
+        for more details.
+      </Text>
     </Stack>
   );
 }

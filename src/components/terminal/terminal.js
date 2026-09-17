@@ -8,6 +8,7 @@ import { WhoAmI } from "@/components/terminal/commands/whoami";
 import { Origin } from "./commands/origin";
 
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { List } from "./commands/ls";
 
 export function Terminal({ focused, activationId }) {
   const terminalRef = useRef(null);
@@ -55,6 +56,9 @@ export function Terminal({ focused, activationId }) {
 
       case "origin":
         return <Origin />;
+
+      case "ls":
+        return <List />;
 
       default:
         return <Text color="red.300">Command not found: {command}</Text>;
@@ -144,9 +148,9 @@ export function Terminal({ focused, activationId }) {
         <Text>Last login: {loginTime} </Text>
         <Stack gap={0}>
           <Text>Welcome to nia.sh</Text>
-          <Text>
+          <Text color="#efd8ea">
             Type{" "}
-            <Text as="span" color="#a55f6d">
+            <Text as="span" color="#B38BB4">
               `help`
             </Text>{" "}
             to see what you can do here.
