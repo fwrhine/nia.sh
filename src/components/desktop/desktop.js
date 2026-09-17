@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Terminal } from "../terminal/terminal";
 import { ImageWidget } from "../widgets/image";
 import { CatWidget } from "../widgets/cat";
 import { Window } from "./window";
 import { ReadingListWidget } from "../widgets/reading-list";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+
+const DESKTOP_WIDTH = 1400;
+const DESKTOP_HEIGHT = 900;
+const MOBILE_BREAKPOINT = 1024;
 
 export function Desktop() {
-  const [activeWindowId, setActiveWindowId] = useState("terminal");
-  const [activationId, setActivationId] = useState(0);
-
-  const activateWindow = (id) => {
-    setActiveWindowId(id);
-    setActivationId((prev) => prev + 1);
-  };
-
+  // Windows
   const windows = [
     {
       id: "terminal",
@@ -51,6 +48,49 @@ export function Desktop() {
     },
   ];
 
+  // Active window focus
+  const [activeWindowId, setActiveWindowId] = useState("terminal");
+  const [activationId, setActivationId] = useState(0);
+
+  const activateWindow = (id) => {
+    setActiveWindowId(id);
+    setActivationId((prev) => prev + 1);
+  };
+
+  // Handle responsive
+  const [scale, setScale] = useState(null);
+  const [isMobile, setIsMobile] = useState(null);
+  const [ready, setReady] = useState(false);
+
+  useLayoutEffect(() => {
+    const updateLayout = () => {
+      const touch = window.matchMedia("(pointer: coarse)").matches;
+
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT || touch);
+
+      setScale(
+        Math.min(
+          window.innerWidth / DESKTOP_WIDTH,
+          window.innerHeight / DESKTOP_HEIGHT,
+          1,
+        ),
+      );
+    };
+
+    updateLayout();
+    setReady(true);
+
+    window.addEventListener("resize", updateLayout);
+
+    return () => window.removeEventListener("resize", updateLayout);
+  }, []);
+
+  if (!ready) return null;
+
+  if (isMobile) {
+    return <Text>Nothing!</Text>;
+  }
+
   return (
     <>
       <Box
@@ -59,12 +99,15 @@ export function Desktop() {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        overflow="hidden"
       >
         <Box
-          w="1400px"
-          h="900px"
-          overflow="hidden"
           position="relative"
+          w={`${DESKTOP_WIDTH}px`}
+          h={`${DESKTOP_HEIGHT}px`}
+          transform={`scale(${scale})`}
+          transformOrigin="center"
+          overflow="hidden"
           onMouseDown={() => {
             setActiveWindowId(null);
             setActivationId((prev) => prev + 1);
