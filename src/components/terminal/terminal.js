@@ -10,6 +10,7 @@ import { Origin } from "./commands/origin";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { List } from "./commands/ls";
 import { Contact } from "./commands/contact";
+import { colors } from "@/utils/colors";
 
 export function Terminal({ focused, activationId }) {
   const terminalRef = useRef(null);
@@ -18,10 +19,10 @@ export function Terminal({ focused, activationId }) {
   const prompt = (
     <>
       <Text whiteSpace="pre" paddingY={5}>
-        <Text as="span" color="#9db390">
+        <Text as="span" color={colors.prompt}>
           nia@localhost
         </Text>
-        <Text as="span" color="#538072">
+        <Text as="span" color={colors.path}>
           :~$
         </Text>{" "}
       </Text>
@@ -51,7 +52,7 @@ export function Terminal({ focused, activationId }) {
 
       case "cv":
         return (
-          <Text color="#D6B56D">Downloading `Aghnia_Prawira_CV.pdf` ...</Text>
+          <Text color={colors.link}>Downloading `Aghnia_Prawira_CV.pdf` ...</Text>
         );
 
       case "projects":
@@ -70,7 +71,7 @@ export function Terminal({ focused, activationId }) {
         return <List />;
 
       default:
-        return <Text color="red.300">Command not found: {command}</Text>;
+        return <Text color={colors.error}>Command not found: {command}</Text>;
     }
   };
 
@@ -174,9 +175,9 @@ export function Terminal({ focused, activationId }) {
         <Text>Last login: {loginTime} </Text>
         <Stack gap={0}>
           <Text>Welcome to nia.sh</Text>
-          <Text color="#efd8ea">
+          <Text color={colors.highlight}>
             Type{" "}
-            <Text as="span" color="#B38BB4">
+            <Text as="span" color={colors.keyword}>
               `help`
             </Text>{" "}
             to see what you can do here.

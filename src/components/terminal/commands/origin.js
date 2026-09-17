@@ -1,3 +1,4 @@
+import { colors } from "@/utils/colors";
 import { Stack, Text } from "@chakra-ui/react";
 
 export function Origin({}) {
@@ -6,7 +7,7 @@ export function Origin({}) {
       <Text>Built in an upper nest in Soho</Text>
       <Text>September 2026</Text>
       <br />
-      <Text fontStyle="italic" color="#ae83ac">
+      <Text fontStyle="italic" color={colors.keyword}>
         £60 and a dream
       </Text>
     </Stack>

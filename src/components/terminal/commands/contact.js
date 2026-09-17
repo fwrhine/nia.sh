@@ -1,9 +1,8 @@
 import { HStack, Link, Stack, Text } from "@chakra-ui/react";
 import { Toaster, toaster } from "@/components/ui/toaster";
+import { colors } from "@/utils/colors";
 
 export function Contact({}) {
-  const color = "#B38BB4";
-
   return (
     <>
       <Toaster />
@@ -21,7 +20,7 @@ export function Contact({}) {
             }}
             cursor="pointer"
             _hover={{
-              color: "#D6B56D",
+              color: colors.link,
               textDecoration: "none",
             }}
           >
@@ -32,7 +31,7 @@ export function Contact({}) {
                 bg: "rgba(179,139,180,.1)",
               }}
             >
-              <Text w="100px" color={color}>
+              <Text w="100px" color={colors.keyword}>
                 Email
               </Text>
 
@@ -46,7 +45,7 @@ export function Contact({}) {
             target="_blank"
             rel="noopener noreferrer"
             _hover={{
-              color: "#D6B56D",
+              color: colors.link,
               textDecoration: "none",
             }}
           >
@@ -57,7 +56,7 @@ export function Contact({}) {
                 bg: "rgba(179,139,180,.1)",
               }}
             >
-              <Text w="100px" color={color}>
+              <Text w="100px" color={colors.keyword}>
                 LinkedIn
               </Text>
               <Text>linkedin.com/in/aghnia-prawira/</Text>
@@ -70,7 +69,7 @@ export function Contact({}) {
             target="_blank"
             rel="noopener noreferrer"
             _hover={{
-              color: "#D6B56D",
+              color: colors.link,
               textDecoration: "none",
             }}
           >
@@ -81,7 +80,7 @@ export function Contact({}) {
                 bg: "rgba(179,139,180,.1)",
               }}
             >
-              <Text w="100px" color={color}>
+              <Text w="100px" color={colors.keyword}>
                 GitHub
               </Text>
 
@@ -90,7 +89,7 @@ export function Contact({}) {
           </Link>
         </Stack>
 
-        <Text color="#efd8ea">
+        <Text color={colors.highlight}>
           I'm open to frontend engineering, creative technology, and
           accessibility work!
         </Text>

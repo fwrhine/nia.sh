@@ -1,3 +1,4 @@
+import { colors } from "@/utils/colors";
 import { Grid, Stack, Text } from "@chakra-ui/react";
 
 export function Experience({}) {
@@ -13,9 +14,9 @@ export function Experience({}) {
         <Text>Research Assistant</Text>
         <Text>@ UCL GDI Hub</Text>
       </Grid>
-      <Text color="#efd8ea">
+      <Text color={colors.highlight}>
         Type{" "}
-        <Text as="span" color="#B38BB4">
+        <Text as="span" color={colors.keyword}>
           `cv`
         </Text>{" "}
         to download my resume.
