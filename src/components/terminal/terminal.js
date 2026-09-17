@@ -48,6 +48,11 @@ export function Terminal({ focused, activationId }) {
       case "work":
         return <Experience />;
 
+      case "cv":
+        return (
+          <Text color="#D6B56D">Downloading `Aghnia_Prawira_CV.pdf` ...</Text>
+        );
+
       case "projects":
         return <Projects />;
 
@@ -70,17 +75,26 @@ export function Terminal({ focused, activationId }) {
 
     if (!command) return;
 
-    if (command === "clear") {
-      setHistory([]);
-      setCommandHistory([]);
-      setHistoryIndex(-1);
-      return;
+    switch (command) {
+      case "clear":
+        setHistory([]);
+        setCommandHistory([]);
+        setHistoryIndex(-1);
+        return;
+
+      case "cv":
+        setCommandHistory((prev) => [...prev, command]);
+        setHistoryIndex(-1);
+        setHistory((prev) => [...prev, command]);
+
+        setTimeout(downloadCV, 300);
+        return;
+
+      default:
+        setCommandHistory((prev) => [...prev, command]);
+        setHistoryIndex(-1);
+        setHistory((prev) => [...prev, command]);
     }
-
-    setCommandHistory((prev) => [...prev, command]);
-    setHistoryIndex(-1);
-
-    setHistory((prev) => [...prev, command]);
   };
 
   const handleKeyDown = (e) => {
@@ -118,6 +132,14 @@ export function Terminal({ focused, activationId }) {
       executeCommand(input);
       setInput("");
     }
+  };
+
+  // Download CV
+  const downloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/Aghnia_Prawira_CV.pdf";
+    link.download = "Aghnia_Prawira_CV.pdf";
+    link.click();
   };
 
   useEffect(() => {
