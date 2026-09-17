@@ -9,9 +9,22 @@ import { Origin } from "./commands/origin";
 
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 
-export function Terminal({}) {
+export function Terminal({ focused, activationId }) {
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
+
+  const prompt = (
+    <>
+      <Text whiteSpace="pre" paddingY={5}>
+        <Text as="span" color="#9db390">
+          nia@localhost
+        </Text>
+        <Text as="span" color="#538072">
+          :~$
+        </Text>{" "}
+      </Text>
+    </>
+  );
 
   // Login time
   const [loginTime, setLoginTime] = useState("");
@@ -104,21 +117,12 @@ export function Terminal({}) {
   };
 
   useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+    if (!focused) return;
 
-  const prompt = (
-    <>
-      <Text whiteSpace="pre" paddingY={5}>
-        <Text as="span" color="#9db390">
-          nia@localhost
-        </Text>
-        <Text as="span" color="#538072">
-          :~$
-        </Text>{" "}
-      </Text>
-    </>
-  );
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+    });
+  }, [focused, activationId]);
 
   useEffect(() => {
     if (!terminalRef.current) return;

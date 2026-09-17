@@ -7,6 +7,8 @@ export function Window({
   title,
   children,
   accessory,
+  focused,
+  onFocus,
   defaultPosition = { x: 100, y: 100 },
   width = "800px",
   height = "600px",
@@ -84,6 +86,10 @@ export function Window({
         bg="#1b1b1b"
         border="3px solid #b7aeaa"
         overflow="hidden"
+        onMouseDown={(e) => {
+          e.stopPropagation();
+          onFocus?.();
+        }}
       >
         {/* Title bar */}
         <Flex
