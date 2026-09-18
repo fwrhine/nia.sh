@@ -11,8 +11,16 @@ import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { List } from "./commands/ls";
 import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
+import { centerX } from "@/utils/desktop";
+import { WINDOW_DEFINITIONS } from "@/utils/windows";
 
-export function Terminal({ focused, activationId }) {
+export function Terminal({
+  focused,
+  activationId,
+  isWindowOpen,
+  openWindow,
+  focusWindow,
+}) {
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -52,11 +60,16 @@ export function Terminal({ focused, activationId }) {
 
       case "cv":
         return (
-          <Text color={colors.link}>Downloading `Aghnia_Prawira_CV.pdf` ...</Text>
+          <Text color={colors.link}>
+            Downloading `Aghnia_Prawira_CV.pdf` ...
+          </Text>
         );
 
       case "projects":
         return <Projects />;
+
+      case "project 01":
+        return <Text color={colors.link}>Opening `Project 01` ...</Text>;
 
       case "help":
         return <Help />;
@@ -93,6 +106,26 @@ export function Terminal({ focused, activationId }) {
         setHistory((prev) => [...prev, command]);
 
         setTimeout(downloadCV, 300);
+        return;
+
+      case "project 01":
+        setCommandHistory((prev) => [...prev, command]);
+        setHistoryIndex(-1);
+        setHistory((prev) => [...prev, command]);
+
+        if (isWindowOpen("project")) {
+          focusWindow("project");
+        } else {
+          setTimeout(() => {
+            openWindow({
+              id: "project",
+              definition: "project",
+              x: centerX(WINDOW_DEFINITIONS.project.width),
+              y: 100,
+            });
+          }, 500);
+        }
+
         return;
 
       default:

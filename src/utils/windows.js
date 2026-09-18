@@ -30,8 +30,8 @@ export const WINDOW_DEFINITIONS = {
     component: ReadingListWidget,
   },
 
-  project01: {
-    title: "Scent Blocks",
+  project: {
+    title: "project 01",
     width: 650,
     height: 650,
     component: ProjectWindow,

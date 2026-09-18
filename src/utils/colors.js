@@ -1,7 +1,7 @@
 export const colors = {
   prompt: "#9db390",
   path: "#538072",
-  keyword: "#bf8fc6",
+  keyword: "#CAA1CF",
   highlight: "#efd8ea",
   link: "#D6B56D",
   error: "red.300",

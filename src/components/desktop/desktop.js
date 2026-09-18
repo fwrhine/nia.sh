@@ -4,14 +4,11 @@ import { Box, Text } from "@chakra-ui/react";
 import { Window } from "./window";
 import { BootScreen } from "./boot";
 import { Dock } from "./dock";
-
-const DESKTOP_WIDTH = 1400;
-const DESKTOP_HEIGHT = 900;
-const MOBILE_BREAKPOINT = 1024;
+import { desktop } from "@/utils/desktop";
 
 export function Desktop() {
   // Open windows
-  const openWindows = [
+  const [openWindows, setOpenWindows] = useState([
     {
       id: "terminal",
       definition: "terminal",
@@ -30,7 +27,20 @@ export function Desktop() {
       x: 920,
       y: 280,
     },
-  ];
+  ]);
+
+  const isWindowOpen = (id) => {
+    return openWindows.some((window) => window.id === id);
+  };
+
+  const openWindow = (window) => {
+    setOpenWindows((prev) => [...prev, window]);
+    activateWindow(window.id);
+  };
+
+  const focusWindow = (id) => {
+    activateWindow(id);
+  };
 
   // Active window focus
   const [activeWindowId, setActiveWindowId] = useState("terminal");
@@ -50,12 +60,12 @@ export function Desktop() {
     const updateLayout = () => {
       const touch = window.matchMedia("(pointer: coarse)").matches;
 
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT || touch);
+      setIsMobile(window.innerWidth < desktop.mobileBreakpoint || touch);
 
       setScale(
         Math.min(
-          window.innerWidth / DESKTOP_WIDTH,
-          window.innerHeight / DESKTOP_HEIGHT,
+          window.innerWidth / desktop.width,
+          window.innerHeight / desktop.height,
           1,
         ),
       );
@@ -89,8 +99,8 @@ export function Desktop() {
           >
             <Box
               position="relative"
-              w={`${DESKTOP_WIDTH}px`}
-              h={`${DESKTOP_HEIGHT}px`}
+              w={`${desktop.width}px`}
+              h={`${desktop.height}px`}
               transform={`scale(${scale})`}
               transformOrigin="center"
               overflow="hidden"
@@ -125,6 +135,9 @@ export function Desktop() {
                       {...definition.props}
                       focused={window.id === activeWindowId}
                       activationId={activationId}
+                      isWindowOpen={isWindowOpen}
+                      openWindow={openWindow}
+                      focusWindow={focusWindow}
                     />
                   </Window>
                 );
