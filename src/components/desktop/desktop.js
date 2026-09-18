@@ -19,15 +19,11 @@ export function Desktop() {
   };
 
   const openWindow = (id) => {
-    // If open, focus
-    if (isWindowOpen(id)) {
-      focusWindow(id);
-      return;
+    if (!isWindowOpen(id)) {
+      setOpenWindows((prev) => [...prev, id]);
     }
 
-    setOpenWindows((prev) => [...prev, id]);
-    setActiveWindowId(id);
-    setActivationId((prev) => prev + 1);
+    focusWindow(id);
   };
 
   const closeWindow = (id) => {
@@ -41,12 +37,24 @@ export function Desktop() {
   // Active window focus
   const [activeWindowId, setActiveWindowId] = useState("terminal");
   const [activationId, setActivationId] = useState(0);
+  const [zIndices, setZIndices] = useState({
+    terminal: 1,
+    girl: 2,
+    readingList: 3,
+  });
 
   const focusWindow = (id) => {
     setActiveWindowId(id);
     setActivationId((prev) => prev + 1);
 
-    setOpenWindows((prev) => [...prev.filter((window) => window !== id), id]);
+    setZIndices((prev) => {
+      const highest = Math.max(...Object.values(prev));
+
+      return {
+        ...prev,
+        [id]: highest + 1,
+      };
+    });
   };
 
   // Handle responsive
@@ -107,9 +115,6 @@ export function Desktop() {
                 setActivationId((prev) => prev + 1);
               }}
             >
-              {/* Wallpapers */}
-              {/* <Wallpaper /> */}
-
               {/* Windows */}
               {openWindows.map((window) => {
                 const definition = WINDOW_DEFINITIONS[window];
@@ -128,6 +133,7 @@ export function Desktop() {
                     height={`${definition.height}px`}
                     onFocus={() => openWindow(window)}
                     onClose={() => closeWindow(window)}
+                    zIndex={zIndices[window]}
                   >
                     <Component
                       {...definition.props}

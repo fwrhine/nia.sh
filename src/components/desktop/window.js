@@ -13,6 +13,7 @@ export function Window({
   defaultPosition = { x: 100, y: 100 },
   width = "800px",
   height = "600px",
+  zIndex,
 }) {
   const windowRef = useRef(null);
   const positionRef = useRef(defaultPosition);
@@ -66,6 +67,7 @@ export function Window({
       position="absolute"
       left={0}
       top={0}
+      zIndex={zIndex}
       transform={`translate(${position.x}px, ${position.y}px)`}
     >
       {/* Window decoration */}
