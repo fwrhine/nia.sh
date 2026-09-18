@@ -11,16 +11,9 @@ import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { List } from "./commands/ls";
 import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
-import { centerX } from "@/utils/desktop";
-import { WINDOW_DEFINITIONS } from "@/utils/windows";
 import { toaster, Toaster } from "../ui/toaster";
 
-export function Terminal({
-  focused,
-  activationId,
-  isWindowOpen,
-  openWindow,
-}) {
+export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -66,7 +59,7 @@ export function Terminal({
         );
 
       case "projects":
-        return <Projects />;
+        return <Projects executeCommand={executeCommand} />;
 
       case "project 01":
         return <Text color={colors.link}>Opening `Project 01` ...</Text>;
@@ -118,9 +111,8 @@ export function Terminal({
         } else {
           setTimeout(() => {
             openWindow("project");
-          }, 500);
+          }, 600);
         }
-
         return;
 
       default:

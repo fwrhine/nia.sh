@@ -5,7 +5,13 @@ export function TerminalLink({ href, onClick, label, text, width }) {
   return (
     <>
       <Link
-        onClick={onClick}
+        onClick={(e) => {
+          if (onClick) {
+            e.preventDefault();
+            e.stopPropagation();
+            onClick();
+          }
+        }}
         href={href}
         target="_blank"
         rel="noopener noreferrer"

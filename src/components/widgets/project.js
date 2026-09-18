@@ -40,7 +40,7 @@ export function ProjectWindow({ src }) {
         </Text>
         <Text textAlign={"justify"}>
           Children with{" "}
-          <Text as="span" color={"black"} bg="#82906c" px={1}>
+          <Text as="span" color={"black"} bg={colors.keyword} px={1}>
             Autism Spectrum Disorder (ASD)
           </Text>{" "}
           often experience difficulty transitioning between activities, which
@@ -48,7 +48,7 @@ export function ProjectWindow({ src }) {
           visual and tactile supports are widely used, olfactory stimuli remain
           largely unexplored despite their potential benefits. Scent Blocks
           explores how smell, combined with light and sound, can become a{" "}
-          <Text as="span" color={"black"} bg="#987698" px={1}>
+          <Text as="span" color={"black"} bg={colors.prompt} px={1}>
             multisensory transition aid
           </Text>{" "}
           through an interactive, customizable device that helps children build

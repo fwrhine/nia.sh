@@ -87,7 +87,7 @@ export function Window({
         bg="#1b1b1b"
         border="3px solid #b7aeaa"
         overflow="hidden"
-        onMouseDown={(e) => {
+        onClick={(e) => {
           e.stopPropagation();
           onFocus?.();
         }}

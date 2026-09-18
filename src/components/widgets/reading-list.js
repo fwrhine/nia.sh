@@ -84,7 +84,7 @@ export function ReadingListWidget({ focused, activationId }) {
           bg={focused && selected === i ? "#cea6a8" : "transparent"}
           p={1}
           cursor="pointer"
-          onMouseDown={(e) => {
+          onClick={(e) => {
             if (!focused) return;
 
             e.preventDefault();

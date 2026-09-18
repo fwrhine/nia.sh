@@ -102,7 +102,7 @@ export function Desktop() {
               transform={`scale(${scale})`}
               transformOrigin="center"
               overflow="hidden"
-              onMouseDown={() => {
+              onClick={() => {
                 setActiveWindowId(null);
                 setActivationId((prev) => prev + 1);
               }}

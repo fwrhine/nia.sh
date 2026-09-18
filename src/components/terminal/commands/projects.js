@@ -1,25 +1,56 @@
 import { colors } from "@/utils/colors";
-import { Grid, Stack, Text } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
+import { TerminalLink } from "../link";
 
-export function Projects({}) {
+export function Projects({ executeCommand }) {
   return (
     <Stack gap={5}>
-      <Grid templateColumns="40px auto" gap={0}>
-        <Text color={colors.link}>01</Text>
-        <Text>nia.sh</Text>
+      <Stack gap={0}>
+        <TerminalLink
+          onClick={() => {
+            executeCommand("project 01");
+          }}
+          label="01"
+          text="nia.sh"
+          width="50px"
+        />
 
-        <Text color={colors.link}>02</Text>
-        <Text>Scent Blocks</Text>
+        <TerminalLink
+          onClick={() => {
+            executeCommand("project 01");
+          }}
+          label="02"
+          text="Scent Blocks"
+          width="50px"
+        />
 
-        <Text color={colors.link}>03</Text>
-        <Text>Mental Health Apps & Vision Loss</Text>
+        <TerminalLink
+          onClick={() => {
+            executeCommand("project 01");
+          }}
+          label="03"
+          text="Mental Health Apps & Vision Loss"
+          width="50px"
+        />
 
-        <Text color={colors.link}>04</Text>
-        <Text>Dream Archives</Text>
+        <TerminalLink
+          onClick={() => {
+            executeCommand("project 01");
+          }}
+          label="04"
+          text="Dream Archives"
+          width="50px"
+        />
 
-        <Text color={colors.link}>05</Text>
-        <Text>If on a winter's night a traveler ...</Text>
-      </Grid>
+        <TerminalLink
+          onClick={() => {
+            executeCommand("project 01");
+          }}
+          label="05"
+          text="If on a winter's night a traveler ..."
+          width="50px"
+        />
+      </Stack>
 
       <Text color={colors.highlight}>
         Type{" "}
