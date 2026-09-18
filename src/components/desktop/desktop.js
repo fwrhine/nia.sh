@@ -9,33 +9,24 @@ import { desktop } from "@/utils/desktop";
 export function Desktop() {
   // Open windows
   const [openWindows, setOpenWindows] = useState([
-    {
-      id: "terminal",
-      definition: "terminal",
-      x: 170,
-      y: 120,
-    },
-    {
-      id: "girl",
-      definition: "girl",
-      x: 1050,
-      y: 60,
-    },
-    {
-      id: "reading",
-      definition: "readingList",
-      x: 920,
-      y: 280,
-    },
+    "terminal",
+    "girl",
+    "readingList",
   ]);
 
   const isWindowOpen = (id) => {
-    return openWindows.some((window) => window.id === id);
+    return openWindows.some((window) => window === id);
   };
 
-  const openWindow = (window) => {
-    setOpenWindows((prev) => [...prev, window]);
-    activateWindow(window.id);
+  const openWindow = (id) => {
+    // If window is opened, bring to front.
+    if (isWindowOpen(id)) {
+      focusWindow(id);
+      return;
+    }
+
+    setOpenWindows((prev) => [...prev, id]);
+    focusWindow(id);
   };
 
   const focusWindow = (id) => {
@@ -43,7 +34,7 @@ export function Desktop() {
   };
 
   const closeWindow = (id) => {
-    setOpenWindows((prev) => prev.filter((window) => window.id !== id));
+    setOpenWindows((prev) => prev.filter((window) => window !== id));
 
     if (activeWindowId === id) {
       setActiveWindowId(null);
@@ -122,27 +113,27 @@ export function Desktop() {
 
               {/* Windows */}
               {openWindows.map((window) => {
-                const definition = WINDOW_DEFINITIONS[window.definition];
+                const definition = WINDOW_DEFINITIONS[window];
                 const Component = definition.component;
 
                 return (
                   <Window
-                    key={window.id}
+                    key={window}
                     defaultPosition={{
-                      x: window.x,
-                      y: window.y,
+                      x: definition.x,
+                      y: definition.y,
                     }}
                     title={definition.title}
                     accessory={definition.accessory}
                     width={`${definition.width}px`}
                     height={`${definition.height}px`}
-                    focused={window.id === activeWindowId}
-                    onFocus={() => activateWindow(window.id)}
-                    onClose={() => closeWindow(window.id)}
+                    focused={window === activeWindowId}
+                    onFocus={() => activateWindow(window)}
+                    onClose={() => closeWindow(window)}
                   >
                     <Component
                       {...definition.props}
-                      focused={window.id === activeWindowId}
+                      focused={window === activeWindowId}
                       activationId={activationId}
                       isWindowOpen={isWindowOpen}
                       openWindow={openWindow}
@@ -153,7 +144,7 @@ export function Desktop() {
               })}
 
               {/* Dock */}
-              <Dock />
+              <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
             </Box>
           </Box>
         ))}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, HStack, Image, Separator, Stack, Text } from "@chakra-ui/react";
 
-export function Dock() {
+export function Dock({ openWindow }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
@@ -48,9 +48,30 @@ export function Dock() {
         >
           <Stack w="120px" />
           <HStack gap={6}>
-            <Image src="/images/icons/terminal.png" w="50px" />
-            <Image src="/images/icons/image.png" w="50px" />
-            <Image src="/images/icons/text.png" w="50px" />
+            <Image
+              src="/images/icons/terminal.png"
+              w="50px"
+              cursor="pointer"
+              onClick={() => {
+                openWindow("terminal");
+              }}
+            />
+            <Image
+              src="/images/icons/image.png"
+              w="50px"
+              cursor="pointer"
+              onClick={() => {
+                openWindow("girl");
+              }}
+            />
+            <Image
+              src="/images/icons/text.png"
+              w="50px"
+              cursor="pointer"
+              onClick={() => {
+                openWindow("readingList");
+              }}
+            />
           </HStack>
           <HStack w="120px" gap={6}>
             <Box

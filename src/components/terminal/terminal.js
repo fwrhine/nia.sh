@@ -20,7 +20,6 @@ export function Terminal({
   activationId,
   isWindowOpen,
   openWindow,
-  focusWindow,
 }) {
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
@@ -115,15 +114,10 @@ export function Terminal({
         setHistory((prev) => [...prev, command]);
 
         if (isWindowOpen("project")) {
-          focusWindow("project");
+          openWindow("project");
         } else {
           setTimeout(() => {
-            openWindow({
-              id: "project",
-              definition: "project",
-              x: centerX(WINDOW_DEFINITIONS.project.width),
-              y: 80,
-            });
+            openWindow("project");
           }, 500);
         }
 
