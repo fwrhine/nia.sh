@@ -12,6 +12,7 @@ import { List } from "./commands/ls";
 import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
 import { toaster, Toaster } from "../ui/toaster";
+import { NotFound } from "./commands/notfound";
 
 export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
@@ -77,7 +78,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
         return <List />;
 
       default:
-        return <Text color={colors.error}>Command not found: {command}</Text>;
+        return <NotFound command={command} />;
     }
   };
 
