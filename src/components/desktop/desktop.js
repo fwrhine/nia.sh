@@ -1,10 +1,10 @@
 import { useLayoutEffect, useState } from "react";
 import { WINDOW_DEFINITIONS } from "@/utils/windows";
+import { desktop } from "@/utils/desktop";
 import { Box, Text } from "@chakra-ui/react";
-import { Window } from "./window";
 import { BootScreen } from "./boot";
 import { Dock } from "./dock";
-import { desktop } from "@/utils/desktop";
+import { Window } from "./window";
 
 export function Desktop() {
   // Open windows
@@ -19,18 +19,15 @@ export function Desktop() {
   };
 
   const openWindow = (id) => {
-    // If window is opened, bring to front.
+    // If open, focus
     if (isWindowOpen(id)) {
       focusWindow(id);
       return;
     }
 
     setOpenWindows((prev) => [...prev, id]);
-    focusWindow(id);
-  };
-
-  const focusWindow = (id) => {
-    activateWindow(id);
+    setActiveWindowId(id);
+    setActivationId((prev) => prev + 1);
   };
 
   const closeWindow = (id) => {
@@ -45,9 +42,11 @@ export function Desktop() {
   const [activeWindowId, setActiveWindowId] = useState("terminal");
   const [activationId, setActivationId] = useState(0);
 
-  const activateWindow = (id) => {
+  const focusWindow = (id) => {
     setActiveWindowId(id);
     setActivationId((prev) => prev + 1);
+
+    setOpenWindows((prev) => [...prev.filter((window) => window !== id), id]);
   };
 
   // Handle responsive
@@ -127,8 +126,7 @@ export function Desktop() {
                     accessory={definition.accessory}
                     width={`${definition.width}px`}
                     height={`${definition.height}px`}
-                    focused={window === activeWindowId}
-                    onFocus={() => activateWindow(window)}
+                    onFocus={() => openWindow(window)}
                     onClose={() => closeWindow(window)}
                   >
                     <Component
