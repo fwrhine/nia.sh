@@ -1,10 +1,11 @@
 import { colors } from "@/utils/colors";
 import { HStack, Link, Text } from "@chakra-ui/react";
 
-export function TerminalLink({ href, label, text, width }) {
+export function TerminalLink({ href, onClick, label, text, width }) {
   return (
     <>
       <Link
+        onClick={onClick}
         href={href}
         target="_blank"
         rel="noopener noreferrer"

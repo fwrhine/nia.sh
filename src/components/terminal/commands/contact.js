@@ -1,4 +1,4 @@
-import { HStack, Link, Stack, Text } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import { colors } from "@/utils/colors";
 import { TerminalLink } from "../link";
@@ -10,8 +10,7 @@ export function Contact({}) {
       <Stack>
         <Text>Reach me at:</Text>
         <Stack gap={0}>
-          {/* Email */}
-          <Link
+          <TerminalLink
             onClick={() => {
               navigator.clipboard.writeText("aghniaprawira@outlook.com");
               toaster.create({
@@ -19,27 +18,10 @@ export function Contact({}) {
                 type: "info",
               });
             }}
-            cursor="pointer"
-            _hover={{
-              color: colors.link,
-              textDecoration: "none",
-            }}
-          >
-            <HStack
-              w="100%"
-              gap={0}
-              _hover={{
-                bg: "rgba(179,139,180,.1)",
-              }}
-            >
-              <Text w="120px" color={colors.keyword}>
-                [Email]
-              </Text>
-
-              <Text>aghniaprawira@outlook.com</Text>
-            </HStack>
-          </Link>
-
+            label="Email"
+            text="aghniaprawira@outlook.com"
+            width="120px"
+          />
           <TerminalLink
             href="https://www.linkedin.com/in/aghnia-prawira/"
             label="LinkedIn"
