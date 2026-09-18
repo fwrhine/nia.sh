@@ -42,6 +42,14 @@ export function Desktop() {
     activateWindow(id);
   };
 
+  const closeWindow = (id) => {
+    setOpenWindows((prev) => prev.filter((window) => window.id !== id));
+
+    if (activeWindowId === id) {
+      setActiveWindowId(null);
+    }
+  };
+
   // Active window focus
   const [activeWindowId, setActiveWindowId] = useState("terminal");
   const [activationId, setActivationId] = useState(0);
@@ -130,6 +138,7 @@ export function Desktop() {
                     height={`${definition.height}px`}
                     focused={window.id === activeWindowId}
                     onFocus={() => activateWindow(window.id)}
+                    onClose={() => closeWindow(window.id)}
                   >
                     <Component
                       {...definition.props}

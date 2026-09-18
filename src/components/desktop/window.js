@@ -9,6 +9,7 @@ export function Window({
   accessory,
   focused,
   onFocus,
+  onClose,
   defaultPosition = { x: 100, y: 100 },
   width = "800px",
   height = "600px",
@@ -125,6 +126,10 @@ export function Window({
             borderLeft="2px solid #d8d0d0"
             borderRight="2px solid #5f5858"
             borderBottom="2px solid #5f5858"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
           >
             <Image src="/images/icons/close.png" />
           </Box>
