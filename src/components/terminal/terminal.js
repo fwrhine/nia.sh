@@ -13,6 +13,7 @@ import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
 import { centerX } from "@/utils/desktop";
 import { WINDOW_DEFINITIONS } from "@/utils/windows";
+import { toaster, Toaster } from "../ui/toaster";
 
 export function Terminal({
   focused,
@@ -178,6 +179,11 @@ export function Terminal({
     link.href = "/Aghnia_Prawira_CV.pdf";
     link.download = "Aghnia_Prawira_CV.pdf";
     link.click();
+
+    toaster.create({
+      description: "Download started!",
+      type: "info",
+    });
   };
 
   useEffect(() => {
@@ -198,54 +204,57 @@ export function Terminal({
   }, [history]);
 
   return (
-    <Box
-      ref={terminalRef}
-      h="100%"
-      overflowY="auto"
-      onClick={() => inputRef.current?.focus()}
-    >
-      <Stack padding={9}>
-        <Text>Last login: {loginTime} </Text>
-        <Stack gap={0}>
-          <Text>Welcome to nia.sh</Text>
-          <Text color={colors.highlight}>
-            Type{" "}
-            <Text as="span" color={colors.keyword}>
-              `help`
-            </Text>{" "}
-            to see what you can do here.
-          </Text>
+    <>
+      <Toaster />
+      <Box
+        ref={terminalRef}
+        h="100%"
+        overflowY="auto"
+        onClick={() => inputRef.current?.focus()}
+      >
+        <Stack padding={9}>
+          <Text>Last login: {loginTime} </Text>
+          <Stack gap={0}>
+            <Text>Welcome to nia.sh</Text>
+            <Text color={colors.highlight}>
+              Type{" "}
+              <Text as="span" color={colors.keyword}>
+                `help`
+              </Text>{" "}
+              to see what you can do here.
+            </Text>
+          </Stack>
+
+          {history.map((command, index) => (
+            <Box key={index}>
+              <HStack gap={0}>
+                {prompt}
+                <Text>{command}</Text>
+              </HStack>
+
+              {renderCommand(command)}
+            </Box>
+          ))}
+          <HStack gap={0}>
+            {prompt}
+
+            <input
+              ref={inputRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              style={{
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                color: "#fff",
+                font: "inherit",
+                flex: 1,
+              }}
+            />
+          </HStack>
         </Stack>
-
-        {history.map((command, index) => (
-          <Box key={index}>
-            <HStack gap={0}>
-              {prompt}
-              <Text>{command}</Text>
-            </HStack>
-
-            {renderCommand(command)}
-          </Box>
-        ))}
-        <HStack gap={0}>
-          {prompt}
-
-          <input
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            style={{
-              background: "transparent",
-              border: "none",
-              outline: "none",
-              color: "#fff",
-              font: "inherit",
-              flex: 1,
-            }}
-          />
-        </HStack>
-      </Stack>
-    </Box>
+      </Box>
+    </>
   );
 }
