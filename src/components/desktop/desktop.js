@@ -1,4 +1,4 @@
-import { act, useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { WINDOW_DEFINITIONS } from "@/utils/windows";
 import { desktop } from "@/utils/desktop";
 import { Box, Text } from "@chakra-ui/react";
@@ -18,9 +18,14 @@ export function Desktop() {
     return openWindows.some((window) => window === id);
   };
 
-  const openWindow = (id) => {
+  const openWindow = (id, fromDock = false) => {
     if (!isWindowOpen(id)) {
       setOpenWindows((prev) => [...prev, id]);
+      return;
+    }
+
+    if (fromDock) {
+      shakeWindow(id);
     }
 
     focusWindow(id);
@@ -55,6 +60,16 @@ export function Desktop() {
         [id]: highest + 1,
       };
     });
+  };
+
+  // Give visual feedback when an opened window is clicked from the dock
+  const [shakingWindowId, setShakingWindowId] = useState(null);
+  const shakeWindow = (id) => {
+    setShakingWindowId(id);
+
+    setTimeout(() => {
+      setShakingWindowId(null);
+    }, 160);
   };
 
   // Handle responsive
@@ -134,6 +149,7 @@ export function Desktop() {
                     onFocus={() => openWindow(window)}
                     onClose={() => closeWindow(window)}
                     focused={window === activeWindowId}
+                    shake={shakingWindowId === window}
                     zIndex={zIndices[window]}
                   >
                     <Component

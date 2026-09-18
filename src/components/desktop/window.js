@@ -8,6 +8,7 @@ export function Window({
   children,
   accessory,
   focused,
+  shake,
   onFocus,
   onClose,
   defaultPosition = { x: 100, y: 100 },
@@ -70,76 +71,78 @@ export function Window({
       zIndex={zIndex}
       transform={`translate(${position.x}px, ${position.y}px)`}
     >
-      {/* Window decoration */}
-      {accessory && (
+      <Box className={shake ? "shake" : ""}>
+        {/* Window decoration */}
+        {accessory && (
+          <Box
+            position="absolute"
+            top="-26px"
+            right="36px"
+            zIndex={100}
+            pointerEvents="none"
+          >
+            {accessory}
+          </Box>
+        )}
         <Box
-          position="absolute"
-          top="-26px"
-          right="36px"
-          zIndex={100}
-          pointerEvents="none"
-        >
-          {accessory}
-        </Box>
-      )}
-      <Box
-        ref={windowRef}
-        width={width}
-        height={height}
-        bg="#1b1b1b"
-        border="3px solid #b7aeaa"
-        overflow="hidden"
-        onClick={(e) => {
-          e.stopPropagation();
-          onFocus?.();
-        }}
-      >
-        {/* Title bar */}
-        <Flex
-          h="36px"
-          align="center"
-          justify="space-between"
-          padding={1}
-          bg={focused ? "#a59594" : "#7d7271"}
-          border="2px solid #5f5858"
-          borderBottomColor={"#b7aeaa"}
-          borderRightColor="#968887"
-          cursor="grab"
-          userSelect="none"
-          onMouseDown={(e) => {
-            drag.current.dragging = true;
-            drag.current.offsetX = e.clientX - positionRef.current.x;
-
-            drag.current.offsetY = e.clientY - positionRef.current.y;
+          ref={windowRef}
+          width={width}
+          height={height}
+          bg="#1b1b1b"
+          border="3px solid #b7aeaa"
+          overflow="hidden"
+          onClick={(e) => {
+            e.stopPropagation();
+            onFocus?.();
           }}
         >
-          <Text fontSize="sm" color="black" fontWeight="500" paddingLeft={2}>
-            {title}
-          </Text>
-          <Box
-            w="22px"
-            h="22px"
-            bg="#968887"
-            display="flex"
-            alignItems="center"
-            cursor="pointer"
-            justifyContent="center"
-            borderTop="2px solid #d8d0d0"
-            borderLeft="2px solid #d8d0d0"
-            borderRight="2px solid #5f5858"
-            borderBottom="2px solid #5f5858"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
+          {/* Title bar */}
+          <Flex
+            h="36px"
+            align="center"
+            justify="space-between"
+            padding={1}
+            bg={focused ? "#948685" : "#7d7271"}
+            border="2px solid #5f5858"
+            borderBottomColor={"#b7aeaa"}
+            borderRightColor="#968887"
+            cursor="grab"
+            userSelect="none"
+            onMouseDown={(e) => {
+              drag.current.dragging = true;
+              drag.current.offsetX = e.clientX - positionRef.current.x;
+
+              drag.current.offsetY = e.clientY - positionRef.current.y;
             }}
           >
-            <Image src="/images/icons/close.png" />
-          </Box>
-        </Flex>
+            <Text fontSize="sm" color="black" fontWeight="500" paddingLeft={2}>
+              {title}
+            </Text>
+            <Box
+              w="22px"
+              h="22px"
+              bg="#968887"
+              display="flex"
+              alignItems="center"
+              cursor="pointer"
+              justifyContent="center"
+              borderTop="2px solid #d8d0d0"
+              borderLeft="2px solid #d8d0d0"
+              borderRight="2px solid #5f5858"
+              borderBottom="2px solid #5f5858"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+            >
+              <Image src="/images/icons/close.png" />
+            </Box>
+          </Flex>
 
-        {/* Window content */}
-        <Box h="calc(100% - 36px)" overflowY="auto">
-          {children}
+          {/* Window content */}
+          <Box h="calc(100% - 36px)" overflowY="auto">
+            {children}
+          </Box>
         </Box>
       </Box>
     </Box>

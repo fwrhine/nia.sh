@@ -54,7 +54,7 @@ export function Dock({ openWindow }) {
               cursor="pointer"
               onClick={(e) => {
                 e.stopPropagation();
-                openWindow("terminal");
+                openWindow("terminal", true);
               }}
             />
             <Image
@@ -63,7 +63,7 @@ export function Dock({ openWindow }) {
               cursor="pointer"
               onClick={(e) => {
                 e.stopPropagation();
-                openWindow("girl");
+                openWindow("girl", true);
               }}
             />
             <Image
@@ -72,7 +72,7 @@ export function Dock({ openWindow }) {
               cursor="pointer"
               onClick={(e) => {
                 e.stopPropagation();
-                openWindow("readingList");
+                openWindow("readingList", true);
               }}
             />
           </HStack>
