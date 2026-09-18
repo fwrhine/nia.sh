@@ -1,12 +1,8 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { Terminal } from "../terminal/terminal";
-import { ImageWidget } from "../widgets/image";
-import { CatWidget } from "../widgets/cat";
+import { useLayoutEffect, useState } from "react";
+import { WINDOW_DEFINITIONS } from "@/utils/windows";
+import { Box, Text } from "@chakra-ui/react";
 import { Window } from "./window";
-import { ReadingListWidget } from "../widgets/reading-list";
-import { Box, Image, Text } from "@chakra-ui/react";
 import { BootScreen } from "./boot";
-import { Wallpaper } from "./wallpaper";
 import { Dock } from "./dock";
 
 const DESKTOP_WIDTH = 1400;
@@ -14,40 +10,25 @@ const DESKTOP_HEIGHT = 900;
 const MOBILE_BREAKPOINT = 1024;
 
 export function Desktop() {
-  // Windows
-  const windows = [
+  // Open windows
+  const openWindows = [
     {
       id: "terminal",
-      title: "nia.sh",
+      definition: "terminal",
       x: 170,
       y: 120,
-      width: 700,
-      height: 570,
-      component: Terminal,
-      props: {},
-      accessory: <CatWidget />,
     },
     {
-      id: "imageWidget",
-      title: "girl.jpg",
+      id: "girl",
+      definition: "girl",
       x: 1050,
       y: 60,
-      width: 150,
-      height: 186,
-      component: ImageWidget,
-      props: {
-        src: "/images/girl/girl-1.jpg",
-      },
     },
     {
-      id: "readingListWidget",
-      title: "reading-list.txt",
+      id: "reading",
+      definition: "readingList",
       x: 920,
       y: 280,
-      width: 350,
-      height: 190,
-      component: ReadingListWidget,
-      props: {},
     },
   ];
 
@@ -122,25 +103,26 @@ export function Desktop() {
               {/* <Wallpaper /> */}
 
               {/* Windows */}
-              {windows.map((window) => {
-                const Component = window.component;
+              {openWindows.map((window) => {
+                const definition = WINDOW_DEFINITIONS[window.definition];
+                const Component = definition.component;
 
                 return (
                   <Window
                     key={window.id}
-                    title={window.title}
-                    accessory={window.accessory}
                     defaultPosition={{
                       x: window.x,
                       y: window.y,
                     }}
-                    width={`${window.width}px`}
-                    height={`${window.height}px`}
+                    title={definition.title}
+                    accessory={definition.accessory}
+                    width={`${definition.width}px`}
+                    height={`${definition.height}px`}
                     focused={window.id === activeWindowId}
                     onFocus={() => activateWindow(window.id)}
                   >
                     <Component
-                      {...window.props}
+                      {...definition.props}
                       focused={window.id === activeWindowId}
                       activationId={activationId}
                     />
