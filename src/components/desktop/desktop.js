@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { act, useEffect, useLayoutEffect, useState } from "react";
 import { WINDOW_DEFINITIONS } from "@/utils/windows";
 import { desktop } from "@/utils/desktop";
 import { Box, Text } from "@chakra-ui/react";
@@ -133,11 +133,11 @@ export function Desktop() {
                     height={`${definition.height}px`}
                     onFocus={() => openWindow(window)}
                     onClose={() => closeWindow(window)}
+                    focused={window === activeWindowId}
                     zIndex={zIndices[window]}
                   >
                     <Component
                       {...definition.props}
-                      focused={window === activeWindowId}
                       activationId={activationId}
                       isWindowOpen={isWindowOpen}
                       openWindow={openWindow}

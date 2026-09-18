@@ -100,7 +100,7 @@ export function Window({
           align="center"
           justify="space-between"
           padding={1}
-          bg="#968887"
+          bg={focused ? "#a59594" : "#7d7271"}
           border="2px solid #5f5858"
           borderBottomColor={"#b7aeaa"}
           borderRightColor="#968887"

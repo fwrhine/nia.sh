@@ -52,7 +52,8 @@ export function Dock({ openWindow }) {
               src="/images/icons/terminal.png"
               w="50px"
               cursor="pointer"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 openWindow("terminal");
               }}
             />
@@ -60,7 +61,8 @@ export function Dock({ openWindow }) {
               src="/images/icons/image.png"
               w="50px"
               cursor="pointer"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 openWindow("girl");
               }}
             />
@@ -68,7 +70,8 @@ export function Dock({ openWindow }) {
               src="/images/icons/text.png"
               w="50px"
               cursor="pointer"
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 openWindow("readingList");
               }}
             />
