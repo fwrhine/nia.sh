@@ -121,7 +121,7 @@ export function Terminal({
               id: "project",
               definition: "project",
               x: centerX(WINDOW_DEFINITIONS.project.width),
-              y: 100,
+              y: 80,
             });
           }, 500);
         }

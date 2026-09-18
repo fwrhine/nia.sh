@@ -31,7 +31,7 @@ export const WINDOW_DEFINITIONS = {
   },
 
   project: {
-    title: "project 01",
+    title: "project-01.txt",
     width: 650,
     height: 650,
     component: ProjectWindow,

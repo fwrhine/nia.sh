@@ -1,6 +1,7 @@
 import { HStack, Link, Stack, Text } from "@chakra-ui/react";
 import { Toaster, toaster } from "@/components/ui/toaster";
 import { colors } from "@/utils/colors";
+import { TerminalLink } from "../link";
 
 export function Contact({}) {
   return (
@@ -31,62 +32,26 @@ export function Contact({}) {
                 bg: "rgba(179,139,180,.1)",
               }}
             >
-              <Text w="100px" color={colors.keyword}>
-                Email
+              <Text w="120px" color={colors.keyword}>
+                [Email]
               </Text>
 
               <Text>aghniaprawira@outlook.com</Text>
             </HStack>
           </Link>
 
-          {/* Linkedin */}
-          <Link
+          <TerminalLink
             href="https://www.linkedin.com/in/aghnia-prawira/"
-            target="_blank"
-            rel="noopener noreferrer"
-            _hover={{
-              color: colors.link,
-              textDecoration: "none",
-            }}
-          >
-            <HStack
-              w="100%"
-              gap={0}
-              _hover={{
-                bg: "rgba(179,139,180,.1)",
-              }}
-            >
-              <Text w="100px" color={colors.keyword}>
-                LinkedIn
-              </Text>
-              <Text>linkedin.com/in/aghnia-prawira/</Text>
-            </HStack>
-          </Link>
-
-          {/* Github */}
-          <Link
+            label="LinkedIn"
+            text="linkedin.com/in/aghnia-prawira/"
+            width="120px"
+          />
+          <TerminalLink
             href="https://github.com/fwrhine"
-            target="_blank"
-            rel="noopener noreferrer"
-            _hover={{
-              color: colors.link,
-              textDecoration: "none",
-            }}
-          >
-            <HStack
-              w="100%"
-              gap={0}
-              _hover={{
-                bg: "rgba(179,139,180,.1)",
-              }}
-            >
-              <Text w="100px" color={colors.keyword}>
-                GitHub
-              </Text>
-
-              <Text>github.com/fwrhine</Text>
-            </HStack>
-          </Link>
+            label="GitHub"
+            text="github.com/fwrhine"
+            width="120px"
+          />
         </Stack>
 
         <Text color={colors.highlight}>
