@@ -101,7 +101,7 @@ export function Window({
             h="36px"
             align="center"
             justify="space-between"
-            padding={1}
+            py={1}
             bg={focused ? "#948685" : "#7d7271"}
             border="2px solid #5f5858"
             borderBottomColor={"#b7aeaa"}
@@ -119,23 +119,30 @@ export function Window({
               {title}
             </Text>
             <Box
-              w="22px"
-              h="22px"
-              bg="#968887"
-              display="flex"
-              alignItems="center"
-              cursor="pointer"
-              justifyContent="center"
-              borderTop="2px solid #d8d0d0"
-              borderLeft="2px solid #d8d0d0"
-              borderRight="2px solid #5f5858"
-              borderBottom="2px solid #5f5858"
+              w="30px"
+              h="30px"
+              alignContent="center"
+              justifyItems={"center"}
               onClick={(e) => {
                 e.stopPropagation();
                 onClose();
               }}
             >
-              <Image src="/images/icons/close.png" />
+              <Box
+                w="22px"
+                h="22px"
+                bg="#968887"
+                display="flex"
+                alignItems="center"
+                cursor="pointer"
+                justifyContent="center"
+                borderTop="2px solid #d8d0d0"
+                borderLeft="2px solid #d8d0d0"
+                borderRight="2px solid #5f5858"
+                borderBottom="2px solid #5f5858"
+              >
+                <Image src="/images/icons/close.png" />
+              </Box>
             </Box>
           </Flex>
 
