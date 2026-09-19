@@ -61,14 +61,21 @@ export function Dock({ isWindowOpen, openWindow }) {
 
   return (
     <>
-      <Box border="3px solid #b7aeaa" position="absolute" bottom="0px" w="100%">
+      <Box
+        border="3px solid #b7aeaa"
+        borderBottom="none"
+        position="absolute"
+        bottom="0px"
+        w="100%"
+      >
         <HStack
           bgColor="#968887"
           w="100%"
           px={8}
-          py={3}
+          pt={3}
+          pb={1}
           border="3px solid #5f5858"
-          borderBottomColor={"#b7aeaa"}
+          borderBottom="none"
           borderRightColor="#968887"
           justifyContent={"space-between"}
         >
@@ -86,7 +93,7 @@ export function Dock({ isWindowOpen, openWindow }) {
               isOpen={true}
             />
           </HStack>
-          <HStack w="120px" gap={6}>
+          <HStack w="120px" gap={6} pb={2}>
             <Box
               w="2px"
               h="55px"
