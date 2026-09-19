@@ -154,6 +154,7 @@ export function Desktop() {
                   >
                     <Component
                       {...definition.props}
+                      focused={window === activeWindowId}
                       activationId={activationId}
                       isWindowOpen={isWindowOpen}
                       openWindow={openWindow}
