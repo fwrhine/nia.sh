@@ -1,9 +1,35 @@
 import { useEffect, useState } from "react";
-import { Box, HStack, Image, Separator, Stack, Text } from "@chakra-ui/react";
+import { Box, HStack, Image, Stack, Text } from "@chakra-ui/react";
 
-export function Dock({ openWindow }) {
+export function Dock({ isWindowOpen, openWindow }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
+  function Icon({ src, window }) {
+    return (
+      <Stack alignItems="center" gap={1} h="65px">
+        <Image
+          src={src}
+          w="50px"
+          cursor="pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            openWindow(window, true);
+          }}
+        />
+        {isWindowOpen(window) && (
+          <Stack
+            h="8px"
+            w="13px"
+            bg="#968887"
+            border="3px solid #5f5858"
+            borderRightColor="#b7aeaa"
+            borderBottomColor="#b7aeaa"
+          />
+        )}
+      </Stack>
+    );
+  }
 
   useEffect(() => {
     const updateClock = () => {
@@ -48,32 +74,16 @@ export function Dock({ openWindow }) {
         >
           <Stack w="120px" />
           <HStack gap={6}>
-            <Image
+            <Icon
               src="/images/icons/terminal.png"
-              w="50px"
-              cursor="pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                openWindow("terminal", true);
-              }}
+              window="terminal"
+              isOpen={true}
             />
-            <Image
-              src="/images/icons/image.png"
-              w="50px"
-              cursor="pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                openWindow("girl", true);
-              }}
-            />
-            <Image
+            <Icon src="/images/icons/image.png" window="girl" isOpen={true} />
+            <Icon
               src="/images/icons/text.png"
-              w="50px"
-              cursor="pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                openWindow("readingList", true);
-              }}
+              window="readingList"
+              isOpen={true}
             />
           </HStack>
           <HStack w="120px" gap={6}>
