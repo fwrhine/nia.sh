@@ -21,10 +21,9 @@ export function Desktop() {
   const openWindow = (id, fromDock = false) => {
     if (!isWindowOpen(id)) {
       setOpenWindows((prev) => [...prev, id]);
-      return;
     }
 
-    if (fromDock) {
+    if (fromDock && isWindowOpen(id)) {
       shakeWindow(id);
     }
 
