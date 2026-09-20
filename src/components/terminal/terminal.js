@@ -13,23 +13,11 @@ import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
 import { toaster, Toaster } from "../ui/toaster";
 import { NotFound } from "./commands/notfound";
+import { Prompt } from "./prompt";
 
 export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
-
-  const prompt = (
-    <>
-      <Text whiteSpace="pre" paddingY={5}>
-        <Text as="span" color={colors.prompt}>
-          nia@localhost
-        </Text>
-        <Text as="span" color={colors.path}>
-          :~$
-        </Text>{" "}
-      </Text>
-    </>
-  );
 
   // Login time
   const [loginTime, setLoginTime] = useState("");
@@ -215,7 +203,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
           {history.map((command, index) => (
             <Box key={index}>
               <HStack gap={0}>
-                {prompt}
+                <Prompt />
                 <Text>{command}</Text>
               </HStack>
 
@@ -223,7 +211,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
             </Box>
           ))}
           <HStack gap={0}>
-            {prompt}
+            <Prompt />
 
             <input
               ref={inputRef}

@@ -5,6 +5,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { BootScreen } from "./boot";
 import { Dock } from "./dock";
 import { Window } from "./window";
+import { TerminalMobile } from "../terminal/terminal-mobile";
 
 export function Desktop() {
   // Open windows
@@ -107,7 +108,7 @@ export function Desktop() {
 
       {ready &&
         (isMobile ? (
-          <Text>Nothing!</Text>
+          <TerminalMobile />
         ) : (
           <Box
             w="100vw"
