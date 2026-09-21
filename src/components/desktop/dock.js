@@ -5,9 +5,53 @@ export function Dock({ isWindowOpen, openWindow }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
-  function Icon({ src, window }) {
+  function Icon({ src, window, label }) {
     return (
-      <Stack alignItems="center" gap={1} h="65px">
+      <Stack
+        alignItems="center"
+        gap={1}
+        h="65px"
+        position="relative"
+        cursor="pointer"
+        className="group"
+      >
+        <Box
+          position="absolute"
+          bottom="calc(100% + 12px)"
+          left="50%"
+          transform="translateX(-50%)"
+          bg="#cfc4bf"
+          color="#1b1b1b"
+          px={3}
+          py={1}
+          fontFamily="var(--font-ibm-plex-mono)"
+          fontSize="14px"
+          whiteSpace="nowrap"
+          zIndex={100}
+          borderTop="2px solid #e6dbd4"
+          borderLeft="2px solid #e6dbd4"
+          borderRight="2px solid #716864"
+          borderBottom="2px solid #716864"
+          visibility="hidden"
+          pointerEvents="none"
+          _groupHover={{
+            visibility: "visible",
+          }}
+          _after={{
+            content: '""',
+            position: "absolute",
+            top: "100%",
+            left: "50%",
+            transform: "translateX(-50%) rotate(45deg)",
+            width: "9px",
+            height: "9px",
+            bg: "#cfc4bf",
+            borderRight: "2px solid #716864",
+            borderBottom: "2px solid #716864",
+          }}
+        >
+          {label}
+        </Box>
         <Image
           src={src}
           w="50px"
@@ -84,12 +128,19 @@ export function Dock({ isWindowOpen, openWindow }) {
             <Icon
               src="/images/icons/terminal.png"
               window="terminal"
+              label="nia.sh"
               isOpen={true}
             />
-            <Icon src="/images/icons/image.png" window="girl" isOpen={true} />
+            <Icon
+              src="/images/icons/image.png"
+              window="girl"
+              label="girl.jpg"
+              isOpen={true}
+            />
             <Icon
               src="/images/icons/text.png"
               window="readingList"
+              label="reading-list.txt"
               isOpen={true}
             />
           </HStack>
