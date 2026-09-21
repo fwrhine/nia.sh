@@ -13,7 +13,7 @@ export const WINDOW_DEFINITIONS = {
     width: 700,
     height: 570,
     component: Terminal,
-    accessory: <CatWidget />,
+    accessory: <CatWidget image="/cat/scratch.png" frames={9} />,
   },
 
   girl: {
@@ -24,7 +24,7 @@ export const WINDOW_DEFINITIONS = {
     height: 186,
     component: ImageWidget,
     props: {
-      src: "/images/girl/girl-1.jpg",
+      src: "/images/girl/girl-2.jpeg",
     },
   },
 

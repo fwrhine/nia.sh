@@ -3,9 +3,9 @@
 import { Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-export function CatWidget() {
+export function CatWidget({image, frames}) {
   const FRAME_SIZE = 32;
-  const TOTAL_FRAMES = 7;
+  const TOTAL_FRAMES = frames;
 
   const [frame, setFrame] = useState(0);
 
@@ -24,7 +24,7 @@ export function CatWidget() {
       w={`${FRAME_SIZE}px`}
       h={`${FRAME_SIZE}px`}
       transform="scale(2)"
-      backgroundImage="url('/cat/scratch.png')"
+      backgroundImage={`url(${image})`}
       backgroundRepeat="no-repeat"
       backgroundPosition={`-${frame * FRAME_SIZE}px 0px`}
       imageRendering="pixelated"

@@ -1,11 +1,12 @@
 import { useLayoutEffect, useState } from "react";
 import { WINDOW_DEFINITIONS } from "@/utils/windows";
 import { desktop } from "@/utils/desktop";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Center, Text } from "@chakra-ui/react";
 import { BootScreen } from "./boot";
 import { Dock } from "./dock";
 import { Window } from "./window";
 import { TerminalMobile } from "../terminal/terminal-mobile";
+import { CatWidget } from "../widgets/cat";
 
 export function Desktop() {
   // Open windows
@@ -163,6 +164,11 @@ export function Desktop() {
                   </Window>
                 );
               })}
+
+              {/* Cat */}
+              <Center h="100%">
+                <CatWidget image="/cat/yawn.png" frames={8} />
+              </Center>
 
               {/* Dock */}
               <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
