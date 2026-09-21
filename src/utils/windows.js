@@ -23,9 +23,6 @@ export const WINDOW_DEFINITIONS = {
     width: 150,
     height: 186,
     component: ImageWidget,
-    props: {
-      src: "/images/girl/girl-2.jpeg",
-    },
   },
 
   readingList: {
