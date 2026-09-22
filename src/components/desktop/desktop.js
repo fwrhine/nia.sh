@@ -7,6 +7,7 @@ import { Dock } from "./dock";
 import { Window } from "./window";
 import { TerminalMobile } from "../terminal/terminal-mobile";
 import { CatWidget } from "../widgets/cat";
+import MobileContext from "@/utils/mobile-context";
 
 export function Desktop() {
   // Open windows
@@ -105,76 +106,78 @@ export function Desktop() {
 
   return (
     <>
-      {!ready && <BootScreen />}
+      <MobileContext.Provider value={isMobile}>
+        {!ready && <BootScreen />}
 
-      {ready &&
-        (isMobile ? (
-          <TerminalMobile />
-        ) : (
-          <Box
-            w="100vw"
-            h="100vh"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            overflow="hidden"
-          >
+        {ready &&
+          (isMobile ? (
+            <TerminalMobile />
+          ) : (
             <Box
-              position="relative"
-              w={`${desktop.width}px`}
-              h={`${desktop.height}px`}
-              transform={`scale(${scale})`}
-              transformOrigin="center"
+              w="100vw"
+              h="100vh"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
               overflow="hidden"
-              onClick={() => {
-                setActiveWindowId(null);
-                setActivationId((prev) => prev + 1);
-              }}
             >
-              {/* Windows */}
-              {openWindows.map((window) => {
-                const definition = WINDOW_DEFINITIONS[window];
-                const Component = definition.component;
+              <Box
+                position="relative"
+                w={`${desktop.width}px`}
+                h={`${desktop.height}px`}
+                transform={`scale(${scale})`}
+                transformOrigin="center"
+                overflow="hidden"
+                onClick={() => {
+                  setActiveWindowId(null);
+                  setActivationId((prev) => prev + 1);
+                }}
+              >
+                {/* Windows */}
+                {openWindows.map((window) => {
+                  const definition = WINDOW_DEFINITIONS[window];
+                  const Component = definition.component;
 
-                return (
-                  <Window
-                    key={window}
-                    defaultPosition={{
-                      x: definition.x,
-                      y: definition.y,
-                    }}
-                    title={definition.title}
-                    accessory={definition.accessory}
-                    width={`${definition.width}px`}
-                    height={`${definition.height}px`}
-                    onFocus={() => openWindow(window)}
-                    onClose={() => closeWindow(window)}
-                    focused={window === activeWindowId}
-                    shake={shakingWindowId === window}
-                    zIndex={zIndices[window]}
-                  >
-                    <Component
-                      {...definition.props}
+                  return (
+                    <Window
+                      key={window}
+                      defaultPosition={{
+                        x: definition.x,
+                        y: definition.y,
+                      }}
+                      title={definition.title}
+                      accessory={definition.accessory}
+                      width={`${definition.width}px`}
+                      height={`${definition.height}px`}
+                      onFocus={() => openWindow(window)}
+                      onClose={() => closeWindow(window)}
                       focused={window === activeWindowId}
-                      activationId={activationId}
-                      isWindowOpen={isWindowOpen}
-                      openWindow={openWindow}
-                      focusWindow={focusWindow}
-                    />
-                  </Window>
-                );
-              })}
+                      shake={shakingWindowId === window}
+                      zIndex={zIndices[window]}
+                    >
+                      <Component
+                        {...definition.props}
+                        focused={window === activeWindowId}
+                        activationId={activationId}
+                        isWindowOpen={isWindowOpen}
+                        openWindow={openWindow}
+                        focusWindow={focusWindow}
+                      />
+                    </Window>
+                  );
+                })}
 
-              {/* Cat */}
-              <Center h="100%">
-                <CatWidget image="/cat/yawn.png" frames={8} />
-              </Center>
+                {/* Cat */}
+                <Center h="100%">
+                  <CatWidget image="/cat/yawn.png" frames={8} />
+                </Center>
 
-              {/* Dock */}
-              <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
+                {/* Dock */}
+                <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
+              </Box>
             </Box>
-          </Box>
-        ))}
+          ))}
+      </MobileContext.Provider>
     </>
   );
 }

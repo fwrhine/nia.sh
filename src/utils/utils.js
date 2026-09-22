@@ -1,3 +1,5 @@
+import { toaster } from "@/components/ui/toaster";
+
 export function getLoginTime() {
   const now = new Date();
 
@@ -18,4 +20,16 @@ export function getLoginTime() {
   });
 
   return `${weekday} ${month} ${day} ${time}`;
+}
+
+export function downloadCV() {
+  const link = document.createElement("a");
+  link.href = "/Aghnia_Prawira_CV.pdf";
+  link.download = "Aghnia_Prawira_CV.pdf";
+  link.click();
+
+  toaster.create({
+    description: "Download started!",
+    type: "info",
+  });
 }

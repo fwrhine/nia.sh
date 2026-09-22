@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { getLoginTime } from "@/utils/date";
 
 import { Experience } from "@/components/terminal/commands/experience";
 import { Help } from "@/components/terminal/commands/help";
@@ -11,9 +10,10 @@ import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { List } from "./commands/ls";
 import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
-import { toaster, Toaster } from "../ui/toaster";
+import { Toaster } from "../ui/toaster";
 import { NotFound } from "./commands/notfound";
 import { Prompt } from "./prompt";
+import { downloadCV, getLoginTime } from "@/utils/utils";
 
 export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
@@ -146,19 +146,6 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
       executeCommand(input);
       setInput("");
     }
-  };
-
-  // Download CV
-  const downloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/Aghnia_Prawira_CV.pdf";
-    link.download = "Aghnia_Prawira_CV.pdf";
-    link.click();
-
-    toaster.create({
-      description: "Download started!",
-      type: "info",
-    });
   };
 
   useEffect(() => {

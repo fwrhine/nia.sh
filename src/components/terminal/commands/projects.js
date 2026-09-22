@@ -1,8 +1,11 @@
 import { colors } from "@/utils/colors";
 import { Stack, Text } from "@chakra-ui/react";
 import { TerminalLink } from "../link";
+import { useIsMobile } from "@/utils/mobile-context";
 
 export function Projects({ executeCommand }) {
+  const isMobile = useIsMobile();
+
   return (
     <Stack gap={5}>
       <Stack gap={0}>
@@ -52,13 +55,15 @@ export function Projects({ executeCommand }) {
         />
       </Stack>
 
-      <Text color={colors.highlight}>
-        Type{" "}
-        <Text as="span" color={colors.keyword}>
-          `project &lsaquo;number&rsaquo;`
-        </Text>{" "}
-        for more details.
-      </Text>
+      {!isMobile && (
+        <Text color={colors.highlight}>
+          Type{" "}
+          <Text as="span" color={colors.keyword}>
+            `project &lsaquo;number&rsaquo;`
+          </Text>{" "}
+          for more details.
+        </Text>
+      )}
     </Stack>
   );
 }
