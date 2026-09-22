@@ -20,12 +20,8 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const inputRef = useRef(null);
 
   // Login time
-  const [loginTime, setLoginTime] = useState("");
-
-  useEffect(() => {
-    setLoginTime(getLoginTime());
-  }, []);
-
+  const [loginTime] = useState(() => getLoginTime());
+  
   // Input
   const [history, setHistory] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
