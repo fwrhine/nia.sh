@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, HStack, Image, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, HStack, Image, Stack, Text } from "@chakra-ui/react";
 
 export function Dock({ isWindowOpen, openWindow }) {
   const [date, setDate] = useState("");
@@ -105,64 +105,66 @@ export function Dock({ isWindowOpen, openWindow }) {
 
   return (
     <>
-      <Box
-        border="3px solid #b7aeaa"
-        borderBottom="none"
-        position="absolute"
-        bottom="0px"
-        w="100%"
-        minW="1200px"
-      >
-        <HStack
-          bgColor="#968887"
-          w="100%"
-          px={8}
-          pt={3}
-          pb={1}
-          border="3px solid #5f5858"
+      <Center>
+        <Box
+          border="3px solid #b7aeaa"
           borderBottom="none"
-          borderRightColor="#968887"
-          justifyContent={"space-between"}
+          position="absolute"
+          bottom="0px"
+          w="97%"
+          minW="1200px"
         >
-          <Stack w="120px" />
-          <HStack gap={6}>
-            <Icon
-              src="/images/icons/terminal.png"
-              window="terminal"
-              label="nia.sh"
-              isOpen={true}
-            />
-            <Icon
-              src="/images/icons/image.png"
-              window="girl"
-              label="girl.jpg"
-              isOpen={true}
-            />
-            <Icon
-              src="/images/icons/text.png"
-              window="readingList"
-              label="reading-list.txt"
-              isOpen={true}
-            />
+          <HStack
+            bgColor="#968887"
+            w="100%"
+            px={8}
+            pt={3}
+            pb={1}
+            border="3px solid #5f5858"
+            borderBottom="none"
+            borderRightColor="#968887"
+            justifyContent={"space-between"}
+          >
+            <Stack w="120px" />
+            <HStack gap={6}>
+              <Icon
+                src="/images/icons/terminal.png"
+                window="terminal"
+                label="nia.sh"
+                isOpen={true}
+              />
+              <Icon
+                src="/images/icons/image.png"
+                window="girl"
+                label="girl.jpg"
+                isOpen={true}
+              />
+              <Icon
+                src="/images/icons/text.png"
+                window="readingList"
+                label="reading-list.txt"
+                isOpen={true}
+              />
+            </HStack>
+            <HStack w="120px" gap={6} pb={2}>
+              <Box
+                w="2px"
+                h="55px"
+                bg="#5f5858"
+                borderRight="1px solid #b7aeaa"
+              />
+              <Stack color="black" gap={0} alignItems={"end"}>
+                <Text fontSize="sm" fontWeight={"500"}>
+                  {date}
+                </Text>
+                <Text fontSize="2xl" fontWeight={"400"}>
+                  {time}
+                </Text>
+              </Stack>
+            </HStack>
           </HStack>
-          <HStack w="120px" gap={6} pb={2}>
-            <Box
-              w="2px"
-              h="55px"
-              bg="#5f5858"
-              borderRight="1px solid #b7aeaa"
-            />
-            <Stack color="black" gap={0} alignItems={"end"}>
-              <Text fontSize="sm" fontWeight={"500"}>
-                {date}
-              </Text>
-              <Text fontSize="2xl" fontWeight={"400"}>
-                {time}
-              </Text>
-            </Stack>
-          </HStack>
-        </HStack>
-      </Box>
+        </Box>
+      </Center>
     </>
   );
 }

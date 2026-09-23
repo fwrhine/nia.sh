@@ -163,7 +163,7 @@ export function Desktop() {
               })}
 
               {/* Cat */}
-              <Center h="100%">
+              <Center h="100%" minW="1200px">
                 <CatWidget image="/cat/yawn.png" frames={8} />
               </Center>
 
