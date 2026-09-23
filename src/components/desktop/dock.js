@@ -111,6 +111,7 @@ export function Dock({ isWindowOpen, openWindow }) {
         position="absolute"
         bottom="0px"
         w="100%"
+        minW="1200px"
       >
         <HStack
           bgColor="#968887"

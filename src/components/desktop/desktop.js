@@ -1,7 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { WINDOW_DEFINITIONS } from "@/utils/windows";
-import { desktop } from "@/utils/desktop";
-import { Box, Center, Text } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import { BootScreen } from "./boot";
 import { Dock } from "./dock";
 import { Window } from "./window";
@@ -75,24 +74,24 @@ export function Desktop() {
   };
 
   // Handle responsive
-  const [scale, setScale] = useState(null);
   const [isMobile, setIsMobile] = useState(null);
   const [ready, setReady] = useState(false);
+  const [layout, setLayout] = useState({
+    width: 1200,
+    height: 750,
+  });
 
   useLayoutEffect(() => {
     const updateLayout = () => {
       const touch = window.matchMedia("(pointer: coarse)").matches;
 
-      setIsMobile(window.innerWidth < desktop.mobileBreakpoint || touch);
-
-      setScale(
-        Math.min(
-          window.innerWidth / desktop.width,
-          window.innerHeight / desktop.height,
-          1,
-        ),
-      );
+      setIsMobile(touch);
     };
+
+    setLayout({
+      width: Math.max(window.innerWidth, 1200),
+      height: Math.max(window.innerHeight, 750),
+    });
 
     updateLayout();
     setTimeout(() => {
@@ -114,67 +113,62 @@ export function Desktop() {
             <TerminalMobile />
           ) : (
             <Box
+              position="relative"
               w="100vw"
               h="100vh"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
               overflow="hidden"
+              onClick={() => {
+                setActiveWindowId(null);
+                setActivationId((prev) => prev + 1);
+              }}
             >
-              <Box
-                position="relative"
-                w={`${desktop.width}px`}
-                h={`${desktop.height}px`}
-                transform={`scale(${scale})`}
-                transformOrigin="center"
-                overflow="hidden"
-                onClick={() => {
-                  setActiveWindowId(null);
-                  setActivationId((prev) => prev + 1);
-                }}
-              >
-                {/* Windows */}
-                {openWindows.map((window) => {
-                  const definition = WINDOW_DEFINITIONS[window];
-                  const Component = definition.component;
+              {/* Windows */}
+              {openWindows.map((window) => {
+                const definition = WINDOW_DEFINITIONS[window];
+                const Component = definition.component;
 
-                  return (
-                    <Window
-                      key={window}
-                      defaultPosition={{
-                        x: definition.x,
-                        y: definition.y,
-                      }}
-                      title={definition.title}
-                      accessory={definition.accessory}
-                      width={`${definition.width}px`}
-                      height={`${definition.height}px`}
-                      onFocus={() => openWindow(window)}
-                      onClose={() => closeWindow(window)}
+                const centerX = layout.width / 2;
+                const centerY = layout.height / 2;
+
+                const x = centerX + definition.offsetX - definition.width / 2;
+                const y = centerY + definition.offsetY - definition.height / 2;
+
+                return (
+                  <Window
+                    key={window}
+                    defaultPosition={{
+                      x: x,
+                      y: y,
+                    }}
+                    title={definition.title}
+                    accessory={definition.accessory}
+                    width={`${definition.width}px`}
+                    height={`${definition.height}px`}
+                    onFocus={() => openWindow(window)}
+                    onClose={() => closeWindow(window)}
+                    focused={window === activeWindowId}
+                    shake={shakingWindowId === window}
+                    zIndex={zIndices[window]}
+                  >
+                    <Component
+                      {...definition.props}
                       focused={window === activeWindowId}
-                      shake={shakingWindowId === window}
-                      zIndex={zIndices[window]}
-                    >
-                      <Component
-                        {...definition.props}
-                        focused={window === activeWindowId}
-                        activationId={activationId}
-                        isWindowOpen={isWindowOpen}
-                        openWindow={openWindow}
-                        focusWindow={focusWindow}
-                      />
-                    </Window>
-                  );
-                })}
+                      activationId={activationId}
+                      isWindowOpen={isWindowOpen}
+                      openWindow={openWindow}
+                      focusWindow={focusWindow}
+                    />
+                  </Window>
+                );
+              })}
 
-                {/* Cat */}
-                <Center h="100%">
-                  <CatWidget image="/cat/yawn.png" frames={8} />
-                </Center>
+              {/* Cat */}
+              <Center h="100%">
+                <CatWidget image="/cat/yawn.png" frames={8} />
+              </Center>
 
-                {/* Dock */}
-                <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
-              </Box>
+              {/* Dock */}
+              <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
             </Box>
           ))}
       </MobileContext.Provider>

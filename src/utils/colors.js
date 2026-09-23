@@ -5,4 +5,5 @@ export const colors = {
   highlight: "#efd8ea",
   link: "#D6B56D",
   error: "red.300",
+  boot: "#dab7b8",
 };

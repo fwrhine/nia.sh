@@ -6,13 +6,22 @@ import { Experience } from "./commands/experience";
 import { Contact } from "./commands/contact";
 import { getLoginTime } from "@/utils/utils";
 import { useState } from "react";
+import { SystemNotice } from "../desktop/system-notice";
 
 export function TerminalMobile() {
   const [loginTime] = useState(() => getLoginTime());
+  const [showPopup, setShowPopup] = useState(true);
 
   return (
     <>
-      <Stack padding={5} pb={10}>
+      {showPopup && (
+        <SystemNotice
+          onEnter={() => {
+            setShowPopup(false);
+          }}
+        />
+      )}
+      <Stack p={8}>
         <Text>Last login: {loginTime}</Text>
         <Text>Welcome to nia.sh</Text>
         <HStack gap={0}>
