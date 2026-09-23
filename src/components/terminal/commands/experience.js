@@ -8,7 +8,7 @@ export function Experience({}) {
 
   return (
     <Stack>
-      <Grid templateColumns="250px auto" gap={0}>
+      <Grid templateColumns={{ base: "55% auto", md: "250px auto" }} gap={0}>
         <Text>Freelance Web Developer</Text>
         <Text>@ Self-employed</Text>
 

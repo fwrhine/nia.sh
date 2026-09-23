@@ -5,6 +5,8 @@ export function TerminalLink({ href, onClick, label, text, width }) {
   return (
     <>
       <Link
+        display="flex"
+        w="100%"
         onClick={(e) => {
           if (onClick) {
             e.preventDefault();
@@ -26,11 +28,12 @@ export function TerminalLink({ href, onClick, label, text, width }) {
           _hover={{
             bg: "rgba(179,139,180,.1)",
           }}
+          alignItems="start"
         >
-          <Text w={width} color={colors.keyword}>
+          <Text flexShrink={0} w={width} color={colors.keyword}>
             [{label}]
           </Text>
-          <Text>{text}</Text>
+          <Text flex="1" minW={0}>{text}</Text>
         </HStack>
       </Link>
     </>
