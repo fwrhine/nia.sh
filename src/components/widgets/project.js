@@ -89,7 +89,6 @@ export function ProjectWindow({ src }) {
         <Stack gap={1}>
           <TerminalLink
             href="https://drive.google.com/file/d/1P_ss45qDt-ESM5OIafE9XMbh2f-D5k9h/view?usp=sharing"
-            target="_blank"
             label="PDF"
             text="research-paper.pdf"
             width="60px"
