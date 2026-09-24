@@ -1,3 +1,6 @@
+import { Text } from "@chakra-ui/react";
+import { colors } from "./colors";
+
 export const PROJECTS = [
   {
     id: "01",

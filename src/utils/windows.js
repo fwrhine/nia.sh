@@ -3,6 +3,7 @@ import { CatWidget } from "@/components/widgets/cat";
 import { ImageWidget } from "@/components/widgets/image";
 import { ProjectWindow } from "@/components/widgets/project";
 import { ReadingListWidget } from "@/components/widgets/reading-list";
+import { PROJECTS } from "./projects";
 
 export const WINDOW_DEFINITIONS = {
   terminal: {
@@ -40,5 +41,8 @@ export const WINDOW_DEFINITIONS = {
     width: 650,
     height: 650,
     component: ProjectWindow,
+    props: {
+      project: PROJECTS[0],
+    },
   },
 };

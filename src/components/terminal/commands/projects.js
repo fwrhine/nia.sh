@@ -2,6 +2,8 @@ import { colors } from "@/utils/colors";
 import { Stack, Text } from "@chakra-ui/react";
 import { TerminalLink } from "../link";
 import { useIsMobile } from "@/utils/mobile-context";
+import { ProjectWindow } from "@/components/widgets/project";
+import { PROJECTS } from "@/utils/projects";
 
 export function Projects({ executeCommand }) {
   const isMobile = useIsMobile();
@@ -17,6 +19,8 @@ export function Projects({ executeCommand }) {
           text="nia.sh"
           width="50px"
         />
+
+        <ProjectWindow project={PROJECTS[0]}/>
 
         <TerminalLink
           onClick={() => {
