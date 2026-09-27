@@ -4,34 +4,55 @@ import { TerminalLink } from "../link";
 import { useIsMobile } from "@/utils/mobile-context";
 import { ProjectWindow } from "@/components/widgets/project";
 import { PROJECTS } from "@/utils/projects";
+import { useState } from "react";
 
 export function Projects({ executeCommand }) {
   const isMobile = useIsMobile();
+  const [expanded, setExpanded] = useState(null);
 
   return (
     <Stack gap={5}>
       <Stack gap={0}>
-        <TerminalLink
+        {PROJECTS.map((project) => (
+          <Stack key={project.id}>
+            <TerminalLink
+              onClick={() => {
+                isMobile
+                  ? setExpanded(expanded === project.id ? null : project.id)
+                  : executeCommand("project 01");
+              }}
+              label={project.id}
+              text={project.title}
+              width="50px"
+            />
+
+            {isMobile && expanded === project.id && (
+              <ProjectWindow project={project} />
+            )}
+          </Stack>
+        ))}
+
+        {/* <TerminalLink
           onClick={() => {
             executeCommand("project 01");
           }}
           label="01"
           text="nia.sh"
           width="50px"
-        />
+        /> */}
 
-        <ProjectWindow project={PROJECTS[0]}/>
+        {/* {isMobile && <ProjectWindow project={PROJECTS[0]} />} */}
 
-        <TerminalLink
+        {/* <TerminalLink
           onClick={() => {
             executeCommand("project 01");
           }}
           label="02"
           text="Scent Blocks"
           width="50px"
-        />
+        /> */}
 
-        <TerminalLink
+        {/* <TerminalLink
           onClick={() => {
             executeCommand("project 01");
           }}
@@ -56,7 +77,7 @@ export function Projects({ executeCommand }) {
           label="05"
           text="If on a winter's night a traveler ..."
           width="50px"
-        />
+        /> */}
       </Stack>
 
       {!isMobile && (

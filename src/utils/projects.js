@@ -5,6 +5,27 @@ export const PROJECTS = [
   {
     id: "01",
     slug: "project-01.txt",
+    title: "nia.sh",
+    type: "Personal Site",
+    tools: ["Next.js", "Chakra UI", "React"],
+    concept: <Text whiteSpace="pre">This site.</Text>,
+    systemLog: [
+      "Designed the visual language inspired by retro desktop OS.",
+      "Built a draggable multi-window interface with dynamic window management.",
+      "Implemented an interactive terminal.",
+      "Created responsive desktop and mobile experiences.",
+    ],
+    attachments: [
+      {
+        label: "GIT",
+        text: "github.com/fwrhine/nia.sh",
+        href: "https://github.com/fwrhine/nia.sh",
+      },
+    ],
+  },
+  {
+    id: "02",
+    slug: "project-02.txt",
     title: "Scent Blocks",
     type: "Research",
     domain: "Assistive Technology",
@@ -27,7 +48,7 @@ export const PROJECTS = [
         consistent routines.
       </Text>
     ),
-    image: "/images/projects/project-01.png",
+    image: "/images/projects/project-02.png",
     systemLog: [
       "Conducted literature review and background research.",
       "Designed the interaction concept and physical device.",
@@ -42,17 +63,17 @@ export const PROJECTS = [
         text: "research-paper.pdf",
         href: "https://drive.google.com/file/d/1P_ss45qDt-ESM5OIafE9XMbh2f-D5k9h/view?usp=sharing",
       },
-       {
+      {
         label: "VID",
         text: "demo-video.mp4",
         href: "https://youtu.be/gFUas5kqWOA",
       },
-       {
+      {
         label: "GIT",
         text: "github.com/fwrhsine/scent-diffuser",
         href: "https://github.com/fwrhine/scent-diffuser",
       },
-       {
+      {
         label: "PDF",
         text: "presentation-slides.pdf",
         href: "https://canva.link/8rcsyy45ddtmg2w",

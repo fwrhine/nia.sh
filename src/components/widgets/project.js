@@ -11,15 +11,25 @@ import { TerminalLink } from "../terminal/link";
 
 export function ProjectWindow({ project }) {
   return (
-    <Stack px={{base: 0, md: 5}} py={5} gap={5} fontSize="sm">
+    <Stack
+      px={{ base: 0, md: 5 }}
+      py={5}
+      pb={{ base: 5, md: 7 }}
+      gap={5}
+      fontSize="sm"
+    >
       <Stack>
         <Text fontSize="xl">{project.title}</Text>
         <Grid templateColumns="80px auto" gap={0}>
           <Text>TYPE:</Text>
           <Text>{project.type}</Text>
 
-          <Text>DOMAIN:</Text>
-          <Text>{project.domain}</Text>
+          {project.domain && (
+            <>
+              <Text>DOMAIN:</Text>
+              <Text>{project.domain}</Text>
+            </>
+          )}
 
           <Text>TOOLS:</Text>
           <HStack>
@@ -41,9 +51,11 @@ export function ProjectWindow({ project }) {
         </Text>
         {project.concept}
       </Stack>
-      <Center>
-        <Image src={project.image} w="50%" />
-      </Center>
+      {project.image && (
+        <Center>
+          <Image src={project.image} w="50%" />
+        </Center>
+      )}
       <Stack>
         <Text fontWeight="500" fontSize="md">
           :: SYSTEM LOG
