@@ -14,6 +14,7 @@ import { Toaster } from "../ui/toaster";
 import { NotFound } from "./commands/notfound";
 import { Prompt } from "./prompt";
 import { downloadCV, getLoginTime } from "@/utils/utils";
+import { PROJECTS } from "@/utils/projects";
 
 export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
@@ -21,7 +22,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
   // Login time
   const [loginTime] = useState(() => getLoginTime());
-  
+
   // Input
   const [history, setHistory] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
@@ -29,6 +30,19 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const [input, setInput] = useState("");
 
   const renderCommand = (command) => {
+    const projectMatch = command.match(/^project\s+(\d+)$/);
+
+    if (projectMatch) {
+      const id = projectMatch[1].padStart(2, "0");
+
+      return (
+        <Text color={colors.link}>
+          Opening `
+          {PROJECTS.find((p) => p.id === id)?.slug ?? `project-${id}.txt`}` ...
+        </Text>
+      );
+    }
+
     switch (command) {
       case "whoami":
         return <WhoAmI />;
@@ -45,9 +59,6 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
       case "projects":
         return <Projects executeCommand={executeCommand} />;
-
-      case "project 01":
-        return <Text color={colors.link}>Opening `Project 01` ...</Text>;
 
       case "help":
         return <Help />;
@@ -71,6 +82,25 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
     if (!command) return;
 
+    const projectMatch = command.match(/^project\s+(\d+)$/);
+
+    if (projectMatch) {
+      const id = projectMatch[1].padStart(2, "0");
+      const windowId = `project${id}`;
+
+      setCommandHistory((prev) => [...prev, command]);
+      setHistoryIndex(-1);
+      setHistory((prev) => [...prev, command]);
+
+      if (isWindowOpen(windowId)) {
+        openWindow(windowId);
+      } else {
+        setTimeout(() => openWindow(windowId), 600);
+      }
+
+      return;
+    }
+
     switch (command) {
       case "clear":
         setHistory([]);
@@ -84,20 +114,6 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
         setHistory((prev) => [...prev, command]);
 
         setTimeout(downloadCV, 300);
-        return;
-
-      case "project 01":
-        setCommandHistory((prev) => [...prev, command]);
-        setHistoryIndex(-1);
-        setHistory((prev) => [...prev, command]);
-
-        if (isWindowOpen("project")) {
-          openWindow("project");
-        } else {
-          setTimeout(() => {
-            openWindow("project");
-          }, 600);
-        }
         return;
 
       default:

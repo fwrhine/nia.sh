@@ -19,7 +19,7 @@ export function Projects({ executeCommand }) {
               onClick={() => {
                 isMobile
                   ? setExpanded(expanded === project.id ? null : project.id)
-                  : executeCommand("project 01");
+                  : executeCommand(`project ${project.id}`);
               }}
               label={project.id}
               text={project.title}
@@ -31,53 +31,6 @@ export function Projects({ executeCommand }) {
             )}
           </Stack>
         ))}
-
-        {/* <TerminalLink
-          onClick={() => {
-            executeCommand("project 01");
-          }}
-          label="01"
-          text="nia.sh"
-          width="50px"
-        /> */}
-
-        {/* {isMobile && <ProjectWindow project={PROJECTS[0]} />} */}
-
-        {/* <TerminalLink
-          onClick={() => {
-            executeCommand("project 01");
-          }}
-          label="02"
-          text="Scent Blocks"
-          width="50px"
-        /> */}
-
-        {/* <TerminalLink
-          onClick={() => {
-            executeCommand("project 01");
-          }}
-          label="03"
-          text="Mental Health Apps & Vision Loss"
-          width="50px"
-        />
-
-        <TerminalLink
-          onClick={() => {
-            executeCommand("project 01");
-          }}
-          label="04"
-          text="Dream Archives"
-          width="50px"
-        />
-
-        <TerminalLink
-          onClick={() => {
-            executeCommand("project 01");
-          }}
-          label="05"
-          text="If on a winter's night a traveler ..."
-          width="50px"
-        /> */}
       </Stack>
 
       {!isMobile && (

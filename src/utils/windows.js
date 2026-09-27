@@ -5,6 +5,23 @@ import { ProjectWindow } from "@/components/widgets/project";
 import { ReadingListWidget } from "@/components/widgets/reading-list";
 import { PROJECTS } from "./projects";
 
+const PROJECT_WINDOWS = Object.fromEntries(
+  PROJECTS.map((project) => [
+    `project${project.id}`,
+    {
+      title: project.slug,
+      offsetX: 0,
+      offsetY: -30,
+      width: 650,
+      height: 650,
+      component: ProjectWindow,
+      props: {
+        project,
+      },
+    },
+  ]),
+);
+
 export const WINDOW_DEFINITIONS = {
   terminal: {
     title: "nia.sh",
@@ -45,4 +62,6 @@ export const WINDOW_DEFINITIONS = {
       project: PROJECTS[0],
     },
   },
+
+  ...PROJECT_WINDOWS,
 };
