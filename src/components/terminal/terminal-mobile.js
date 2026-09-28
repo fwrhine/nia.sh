@@ -1,4 +1,4 @@
-import { HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, HStack, Stack, Text } from "@chakra-ui/react";
 import { Prompt } from "./prompt";
 import { WhoAmI } from "./commands/whoami";
 import { Projects } from "./commands/projects";
@@ -7,6 +7,17 @@ import { Contact } from "./commands/contact";
 import { getLoginTime } from "@/utils/utils";
 import { useState } from "react";
 import { SystemNotice } from "../desktop/system-notice";
+
+function PromptLine({ command }) {
+  return (
+    <Box py={5}>
+      <HStack gap={0} bg="rgba(222, 191, 222, 0.13)">
+        <Prompt />
+        <Text>{command}</Text>
+      </HStack>
+    </Box>
+  );
+}
 
 export function TerminalMobile() {
   const [loginTime] = useState(() => getLoginTime());
@@ -24,28 +35,17 @@ export function TerminalMobile() {
       <Stack p={8}>
         <Text>Last login: {loginTime}</Text>
         <Text>Welcome to nia.sh</Text>
-        <HStack gap={0}>
-          <Prompt />
-          <Text>whoami</Text>
-        </HStack>
+
+        <PromptLine command="whoami" />
         <WhoAmI />
 
-        <HStack gap={0}>
-          <Prompt />
-          <Text>work</Text>
-        </HStack>
+        <PromptLine command="work" />
         <Experience />
 
-        <HStack gap={0}>
-          <Prompt />
-          <Text>projects</Text>
-        </HStack>
+        <PromptLine command="projects" />
         <Projects />
 
-        <HStack gap={0}>
-          <Prompt />
-          <Text>contact</Text>
-        </HStack>
+        <PromptLine command="contact" />
         <Contact />
       </Stack>
     </>

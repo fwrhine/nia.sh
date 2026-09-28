@@ -21,6 +21,7 @@ export function Projects({ executeCommand }) {
                   ? setExpanded(expanded === project.id ? null : project.id)
                   : executeCommand(`project ${project.id}`);
               }}
+              active={isMobile && expanded === project.id}
               label={project.id}
               text={project.title}
               width="50px"

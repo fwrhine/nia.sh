@@ -201,7 +201,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
           {history.map((command, index) => (
             <Box key={index}>
-              <HStack gap={0}>
+              <HStack gap={0} paddingY={5}>
                 <Prompt />
                 <Text>{command}</Text>
               </HStack>
@@ -209,7 +209,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
               {renderCommand(command)}
             </Box>
           ))}
-          <HStack gap={0}>
+          <HStack gap={0} paddingY={5}>
             <Prompt />
 
             <input

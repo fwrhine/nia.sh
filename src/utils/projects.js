@@ -8,9 +8,14 @@ export const PROJECTS = [
     title: "nia.sh",
     type: "Personal Site",
     tools: ["Next.js", "Chakra UI", "React"],
-    concept: <Text whiteSpace="pre">This site.</Text>,
+    concept: (
+      <Text>
+        You're looking at it. This site is my personal portfolio, presenting my work and background
+        through an interactive retro desktop experience.
+      </Text>
+    ),
     systemLog: [
-      "Designed the visual language inspired by retro desktop OS.",
+      "Designed a visual language inspired by retro desktop OS.",
       "Built a draggable multi-window interface with dynamic window management.",
       "Implemented an interactive terminal.",
       "Created responsive desktop and mobile experiences.",

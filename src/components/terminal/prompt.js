@@ -4,7 +4,7 @@ import { Text } from "@chakra-ui/react";
 export function Prompt() {
   return (
     <>
-      <Text whiteSpace="pre" paddingY={5}>
+      <Text whiteSpace="pre">
         <Text as="span" color={colors.prompt}>
           nia@localhost
         </Text>
