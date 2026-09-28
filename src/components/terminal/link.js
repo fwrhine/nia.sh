@@ -1,6 +1,6 @@
 import { colors } from "@/utils/colors";
+import { useIsMobile } from "@/utils/mobile-context";
 import { HStack, Link, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 
 export function TerminalLink({
   href,
@@ -9,7 +9,10 @@ export function TerminalLink({
   text,
   width,
   active = false,
+  project = false,
 }) {
+  const isMobile = useIsMobile();
+
   return (
     <>
       <Link
@@ -30,22 +33,26 @@ export function TerminalLink({
           textDecoration: "none",
         }}
       >
-        <HStack
-          w="100%"
-          gap={0}
-          _hover={{
-            bg: "rgba(179,139,180,.1)",
-          }}
-          bg={active ? "rgba(179,139,180,.1)" : "transparent"}
-          color={active ? colors.link : undefined}
-          alignItems="start"
-        >
-          <Text flexShrink={0} w={width} color={colors.keyword}>
-            [{label}]
-          </Text>
-          <Text flex="1" minW={0}>
-            {text}
-          </Text>
+        <HStack w="100%" justify={"space-between"}>
+          <HStack
+            w="100%"
+            gap={0}
+            _hover={{
+              bg: "rgba(179,139,180,.1)",
+            }}
+            bg={active ? "rgba(179,139,180,.1)" : "transparent"}
+            color={active ? colors.link : undefined}
+            alignItems="start"
+          >
+            {!(isMobile && project) && (
+              <Text flexShrink={0} w={width} color={colors.keyword}>
+                [{label}]
+              </Text>
+            )}
+            <Text flex="1" minW={0}>
+              {isMobile && project && (active ? "▾ " : "▸ ")} {text}
+            </Text>
+          </HStack>
         </HStack>
       </Link>
     </>

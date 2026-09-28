@@ -25,6 +25,7 @@ export function Projects({ executeCommand }) {
               label={project.id}
               text={project.title}
               width="50px"
+              project={true}
             />
 
             {isMobile && expanded === project.id && (
@@ -42,6 +43,10 @@ export function Projects({ executeCommand }) {
           </Text>{" "}
           for more details.
         </Text>
+      )}
+
+      {isMobile && (
+        <Text color={colors.highlight}>Tap a project to expand.</Text>
       )}
     </Stack>
   );

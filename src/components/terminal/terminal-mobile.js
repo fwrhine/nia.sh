@@ -10,7 +10,7 @@ import { SystemNotice } from "../desktop/system-notice";
 
 function PromptLine({ command }) {
   return (
-    <Box py={5}>
+    <Box pt={5} pb={2}>
       <HStack gap={0} bg="rgba(222, 191, 222, 0.13)">
         <Prompt />
         <Text>{command}</Text>
