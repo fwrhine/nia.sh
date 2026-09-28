@@ -7,11 +7,11 @@ export const PROJECTS = [
     slug: "project-01.txt",
     title: "nia.sh",
     type: "Personal Site",
-    tools: ["Next.js", "Chakra UI", "React"],
+    tools: ["Next.js", "React", "Chakra UI"],
     concept: (
       <Text>
-        You're looking at it. This site is my personal portfolio, presenting my work and background
-        through an interactive retro desktop experience.
+        You're looking at it. This site is my personal portfolio, presenting my
+        work and background through an interactive retro desktop experience.
       </Text>
     ),
     systemLog: [
@@ -61,6 +61,60 @@ export const PROJECTS = [
       "Built a functional Arduino-based multisensory prototype.",
       "Built a React Native companion application.",
       "Designed the evaluation methodology for future studies.",
+    ],
+    attachments: [
+      {
+        label: "PDF",
+        text: "research-paper.pdf",
+        href: "https://drive.google.com/file/d/1P_ss45qDt-ESM5OIafE9XMbh2f-D5k9h/view?usp=sharing",
+      },
+      {
+        label: "VID",
+        text: "demo-video.mp4",
+        href: "https://youtu.be/gFUas5kqWOA",
+      },
+      {
+        label: "GIT",
+        text: "github.com/fwrhsine/scent-diffuser",
+        href: "https://github.com/fwrhine/scent-diffuser",
+      },
+      {
+        label: "PDF",
+        text: "presentation-slides.pdf",
+        href: "https://canva.link/8rcsyy45ddtmg2w",
+      },
+    ],
+  },
+  {
+    id: "04",
+    slug: "project-04.txt",
+    title: "Dream Archives",
+    type: "Personal",
+    domain: "Assistive Technology",
+    tools: ["Phaser", "Next.js", "Procreate", "Pixaki"],
+    status: "In Progress",
+    concept: (
+      <Text textAlign={"justify"}>
+        Dream Archives is an ongoing personal archive exploring{" "}
+        <Text as="span" color="black" bg={colors.keyword} px={1}>
+          memory, place, and atmosphere
+        </Text>
+        . Inspired by PC-98 adventure games and visual novels, the project
+        experiments with{" "}
+        <Text as="span" color="black" bg={colors.prompt} px={1}>
+          interactive storytelling
+        </Text>{" "}
+        as a way of documenting thoughts, memories, and ideas. Visitors are
+        invited to wander through interconnected rooms, uncover fragments, and
+        linger at their own pace. It is currently under active development.
+      </Text>
+    ),
+    image: "/images/projects/project-02.png",
+    systemLog: [
+      "Designed the overall concept, structure, and visual direction of the archive.",
+      "Created concept art and pixel art assets.",
+      "Implemented room exploration and interaction systems.",
+      "Currently developing narrative fragments and hidden interactions.",
     ],
     attachments: [
       {
