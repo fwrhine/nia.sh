@@ -8,6 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { TerminalLink } from "../terminal/link";
+import { colors } from "@/utils/colors";
 
 export function ProjectWindow({ project }) {
   return (
@@ -19,7 +20,9 @@ export function ProjectWindow({ project }) {
       fontSize={{ base: "md", md: "sm" }}
     >
       <Stack>
-        <Text fontSize="xl">{project.title}</Text>
+        <Text fontSize="xl" color={colors.highlight}>
+          {project.title}
+        </Text>
         <Grid templateColumns="80px auto" gap={0}>
           <Text>TYPE:</Text>
           <Text>{project.type}</Text>
