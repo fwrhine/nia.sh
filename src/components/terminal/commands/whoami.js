@@ -14,7 +14,7 @@ export function WhoAmI({}) {
         that encourage exploration, reflection, and lingering.
       </Text>
       <Text>
-        Currently based in London, polishing the shards of my dreams ...
+        Currently based in London, polishing the shards of my dreams . . .
       </Text>
     </Stack>
   );

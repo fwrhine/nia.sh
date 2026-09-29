@@ -16,7 +16,7 @@ export function ProjectWindow({ project }) {
       pt={{ base: 2, md: 5 }}
       pb={7}
       gap={5}
-      fontSize="sm"
+      fontSize={{ base: "md", md: "sm" }}
     >
       <Stack>
         <Text fontSize="xl">{project.title}</Text>

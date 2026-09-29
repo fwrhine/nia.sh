@@ -11,7 +11,7 @@ export const PROJECTS = [
     concept: (
       <Text>
         You're looking at it. This site is my personal portfolio, presenting my
-        work and background through an interactive retro desktop experience.
+        work through an interactive retro desktop experience.
       </Text>
     ),
     systemLog: [
@@ -55,12 +55,12 @@ export const PROJECTS = [
     ),
     image: "/images/projects/project-02.png",
     systemLog: [
-      "Conducted literature review and background research.",
+      "Conducted literature review.",
       "Designed the interaction concept and physical device.",
       "Iterated through low and medium-fidelity prototypes.",
-      "Built a functional Arduino-based multisensory prototype.",
+      "Built a functional Arduino-based prototype.",
       "Built a React Native companion application.",
-      "Designed the evaluation methodology for future studies.",
+      "Designed an evaluation methodology for future studies.",
     ],
     attachments: [
       {
