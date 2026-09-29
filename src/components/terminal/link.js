@@ -50,7 +50,7 @@ export function TerminalLink({
               </Text>
             )}
             <Text flex="1" minW={0}>
-              {isMobile && project && (active ? "▾ " : "▸ ")} {text}
+              <Text as="span" color={colors.keyword}>{isMobile && project && (active ? "▾ " : "▸ ")}</Text> {text}
             </Text>
           </HStack>
         </HStack>
