@@ -20,7 +20,7 @@ export function ProjectWindow({ project }) {
       fontSize={{ base: "md", md: "sm" }}
     >
       <Stack>
-        <Text fontSize="xl" color={colors.highlight}>
+        <Text fontSize="xl" color={{ base: colors.keyword, md: "white" }}>
           {project.title}
         </Text>
         <Grid templateColumns="80px auto" gap={0}>
