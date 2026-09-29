@@ -11,13 +11,7 @@ import { TerminalLink } from "../terminal/link";
 
 export function ProjectWindow({ project }) {
   return (
-    <Stack
-      px={{ base: 0, md: 5 }}
-      pt={5}
-      pb={7}
-      gap={5}
-      fontSize="sm"
-    >
+    <Stack px={{ base: 0, md: 5 }} pt={5} pb={7} gap={5} fontSize="sm">
       <Stack>
         <Text fontSize="xl">{project.title}</Text>
         <Grid templateColumns="80px auto" gap={0}>
@@ -32,7 +26,7 @@ export function ProjectWindow({ project }) {
           )}
 
           <Text>TOOLS:</Text>
-          <HStack>
+          <HStack wrap="wrap" rowGap={0}>
             {project.tools.map((tool, i) => {
               return (
                 <HStack key={i}>
