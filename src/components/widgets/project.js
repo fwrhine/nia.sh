@@ -56,7 +56,7 @@ export function ProjectWindow({ project }) {
       </Stack>
       {project.image && (
         <Center>
-          <Image src={project.image} w="50%" />
+          <Image src={project.image} w={{ base: "90%", md: "50%" }} />
         </Center>
       )}
       <Stack>

@@ -10,10 +10,16 @@ export const PROJECTS = [
     tools: ["Next.js", "React", "Chakra UI"],
     concept: (
       <Text>
-        You're looking at it. This site is my personal portfolio, presenting my
-        work through an interactive retro desktop experience.
+        You're looking at it! This site is my personal portfolio, where you can
+        explore my work through an interactive terminal interface inspired by
+        retro operating systems.{" "}
+        <Text as="span" color={colors.keyword}>
+          [You're currently viewing the mobile version &mdash; visit on desktop
+          for the full experience.]
+        </Text>
       </Text>
     ),
+    image: "/images/projects/project-01.png",
     systemLog: [
       "Designed a visual language inspired by retro desktop OS.",
       "Built a draggable multi-window interface with dynamic window management.",
