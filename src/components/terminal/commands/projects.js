@@ -32,7 +32,7 @@ export function Projects({ executeCommand }) {
 
       {expanded && (
         <>
-          <Separator mt={5} />
+          <Separator mt={2} />
           <ProjectWindow project={PROJECTS.find((p) => p.id === expanded)} />
         </>
       )}
