@@ -8,18 +8,23 @@ export const PROJECTS = [
     title: "nia.sh",
     type: "Personal Site",
     tools: ["Next.js", "React", "Chakra UI"],
-    concept: (
+    concept: ({ isMobile }) => (
       <Text>
         You're looking at it! This site is my personal portfolio, where you can
-        explore my work through an interactive terminal interface inspired by
-        retro operating systems.{" "}
-        <Text as="span" color={colors.keyword}>
-          [You're currently viewing the mobile version &mdash; visit on desktop
-          for the full experience.]
-        </Text>
+        explore my work through an{" "}
+        <Text as="span" color={"black"} bg={colors.prompt} px={1}>
+          interactive terminal
+        </Text>{" "}
+        interface inspired by retro operating systems.{" "}
+        {isMobile && (
+          <Text as="span" color={colors.keyword}>
+            [You're currently viewing the mobile version &mdash; visit on
+            desktop for the full experience.]
+          </Text>
+        )}
       </Text>
     ),
-    image: "/images/projects/project-01.png",
+    image: { mobile: "/images/projects/project-01.png" },
     systemLog: [
       "Designed a visual language inspired by retro desktop OS.",
       "Built a draggable multi-window interface with dynamic window management.",
@@ -41,7 +46,7 @@ export const PROJECTS = [
     type: "Research",
     domain: "Assistive Technology",
     tools: ["Arduino", "React Native", "Figma"],
-    concept: (
+    concept: ({ isMobile }) => (
       <Text textAlign={"justify"}>
         Children with{" "}
         <Text as="span" color={"black"} bg={colors.keyword} px={1}>
@@ -59,7 +64,10 @@ export const PROJECTS = [
         consistent routines.
       </Text>
     ),
-    image: "/images/projects/project-02.png",
+    image: {
+      desktop: "/images/projects/project-02.png",
+      mobile: "/images/projects/project-02.png",
+    },
     systemLog: [
       "Conducted literature review.",
       "Designed the interaction concept and physical device.",
@@ -99,7 +107,7 @@ export const PROJECTS = [
     domain: "Assistive Technology",
     tools: ["Phaser", "Next.js", "Procreate", "Pixaki"],
     status: "In Progress",
-    concept: (
+    concept: ({ isMobile }) => (
       <Text textAlign={"justify"}>
         Dream Archives is an ongoing personal archive exploring{" "}
         <Text as="span" color="black" bg={colors.keyword} px={1}>
@@ -115,7 +123,10 @@ export const PROJECTS = [
         linger at their own pace. It is currently under active development.
       </Text>
     ),
-    image: "/images/projects/project-02.png",
+    image: {
+      desktop: "/images/projects/project-02.png",
+      mobile: "/images/projects/project-02.png",
+    },
     systemLog: [
       "Designed the overall concept, structure, and visual direction of the archive.",
       "Created concept art and pixel art assets.",

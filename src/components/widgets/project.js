@@ -9,8 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { TerminalLink } from "../terminal/link";
 import { colors } from "@/utils/colors";
+import { useIsMobile } from "@/utils/mobile-context";
 
 export function ProjectWindow({ project }) {
+  const isMobile = useIsMobile();
+
   return (
     <Stack
       px={{ base: 0, md: 5 }}
@@ -52,13 +55,20 @@ export function ProjectWindow({ project }) {
         <Text fontWeight="500" fontSize="md">
           :: CONCEPT
         </Text>
-        {project.concept}
+        {project.concept({ isMobile })}
       </Stack>
-      {project.image && (
+
+      {!isMobile && project.image.desktop && (
         <Center>
-          <Image src={project.image} w={{ base: "90%", md: "50%" }} />
+          <Image src={project.image.desktop} w={"50%"} />
         </Center>
       )}
+      {isMobile && project.image.mobile && (
+        <Center>
+          <Image src={project.image.mobile} w={"90%"} />
+        </Center>
+      )}
+
       <Stack>
         <Text fontWeight="500" fontSize="md">
           :: SYSTEM LOG
