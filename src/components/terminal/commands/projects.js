@@ -4,17 +4,34 @@ import { TerminalLink } from "../link";
 import { useIsMobile } from "@/utils/mobile-context";
 import { ProjectWindow } from "@/components/widgets/project";
 import { PROJECTS } from "@/utils/projects";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function Projects({ executeCommand }) {
   const isMobile = useIsMobile();
   const [expanded, setExpanded] = useState(null);
+  const projectRefs = useRef({});
+
+  useEffect(() => {
+    if (!isMobile || !expanded) return;
+
+    requestAnimationFrame(() => {
+      projectRefs.current[expanded]?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }, [expanded, isMobile]);
 
   return (
     <Stack gap={5}>
       <Stack gap={0}>
         {PROJECTS.map((project) => (
-          <Stack key={project.id}>
+          <Stack
+            key={project.id}
+            ref={(el) => {
+              projectRefs.current[project.id] = el;
+            }}
+          >
             <TerminalLink
               onClick={() => {
                 isMobile
