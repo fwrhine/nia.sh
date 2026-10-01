@@ -34,13 +34,13 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
     if (projectMatch) {
       const id = projectMatch[1].padStart(2, "0");
+      const project = PROJECTS.find((p) => p.id === id);
 
-      return (
-        <Text color={colors.link}>
-          Opening `
-          {PROJECTS.find((p) => p.id === id)?.slug ?? `project-${id}.txt`}` ...
-        </Text>
-      );
+      if (!project) {
+        return <Text color={colors.error}>Project {id} not found.</Text>;
+      }
+
+      return <Text color={colors.link}>Opening `{project.slug}`...</Text>;
     }
 
     switch (command) {
@@ -86,11 +86,17 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
     if (projectMatch) {
       const id = projectMatch[1].padStart(2, "0");
-      const windowId = `project${id}`;
+      const project = PROJECTS.find((project) => project.id === id);
 
       setCommandHistory((prev) => [...prev, command]);
       setHistoryIndex(-1);
       setHistory((prev) => [...prev, command]);
+
+      if (!project) {
+        return;
+      }
+
+      const windowId = `project${id}`;
 
       if (isWindowOpen(windowId)) {
         openWindow(windowId);
