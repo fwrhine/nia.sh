@@ -48,6 +48,12 @@ export function ProjectWindow({ project }) {
               );
             })}
           </HStack>
+          {project.status && (
+            <>
+              <Text color={colors.link}>STATUS:</Text>
+              <Text color={colors.link}>{project.status}</Text>
+            </>
+          )}
         </Grid>
       </Stack>
       <Separator />
@@ -59,13 +65,13 @@ export function ProjectWindow({ project }) {
       </Stack>
 
       {!isMobile && project.image.desktop && (
-        <Center>
-          <Image src={project.image.desktop} w={"50%"} />
+        <Center py={3}>
+          <Image src={project.image.desktop.url} w={project.image.desktop.w} />
         </Center>
       )}
       {isMobile && project.image.mobile && (
-        <Center>
-          <Image src={project.image.mobile} w={"90%"} />
+        <Center py={2}>
+          <Image src={project.image.mobile.url} w={project.image.mobile.w} />
         </Center>
       )}
 

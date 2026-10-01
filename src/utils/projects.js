@@ -24,7 +24,7 @@ export const PROJECTS = [
         )}
       </Text>
     ),
-    image: { mobile: "/images/projects/project-01.png" },
+    image: { mobile: { url: "/images/projects/project-01.png", w: "100%" } },
     systemLog: [
       "Designed a visual language inspired by retro desktop OS.",
       "Built a draggable multi-window interface with dynamic window management.",
@@ -65,8 +65,8 @@ export const PROJECTS = [
       </Text>
     ),
     image: {
-      desktop: "/images/projects/project-02.png",
-      mobile: "/images/projects/project-02.png",
+      desktop: { url: "/images/projects/project-02.png", w: "60%" },
+      mobile: { url: "/images/projects/project-02.png", w: "100%" },
     },
     systemLog: [
       "Conducted literature review.",
@@ -104,9 +104,9 @@ export const PROJECTS = [
     slug: "project-04.txt",
     title: "Dream Archives",
     type: "Personal",
-    domain: "Assistive Technology",
+    domain: "Creative Technology",
     tools: ["Phaser", "Next.js", "Procreate", "Pixaki"],
-    status: "In Progress",
+    status: "IN PROGRESS",
     concept: ({ isMobile }) => (
       <Text textAlign={"justify"}>
         Dream Archives is an ongoing personal archive exploring{" "}
@@ -124,8 +124,8 @@ export const PROJECTS = [
       </Text>
     ),
     image: {
-      desktop: "/images/projects/project-02.png",
-      mobile: "/images/projects/project-02.png",
+      desktop: { url: "/images/projects/project-04.png", w: "90%" },
+      mobile: { url: "/images/projects/project-04.png", w: "100%" },
     },
     systemLog: [
       "Designed the overall concept, structure, and visual direction of the archive.",
@@ -135,24 +135,14 @@ export const PROJECTS = [
     ],
     attachments: [
       {
-        label: "PDF",
-        text: "research-paper.pdf",
-        href: "https://drive.google.com/file/d/1P_ss45qDt-ESM5OIafE9XMbh2f-D5k9h/view?usp=sharing",
-      },
-      {
-        label: "VID",
-        text: "demo-video.mp4",
-        href: "https://youtu.be/gFUas5kqWOA",
+        label: "WEB",
+        text: "dream-archives.vercel.app",
+        href: "https://dream-archives.vercel.app/",
       },
       {
         label: "GIT",
-        text: "github.com/fwrhsine/scent-diffuser",
-        href: "https://github.com/fwrhine/scent-diffuser",
-      },
-      {
-        label: "PDF",
-        text: "presentation-slides.pdf",
-        href: "https://canva.link/8rcsyy45ddtmg2w",
+        text: "github.com/fwrhine/dream-archives",
+        href: "https://github.com/fwrhine/dream-archives",
       },
     ],
   },
