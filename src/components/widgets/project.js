@@ -10,6 +10,7 @@ import {
 import { TerminalLink } from "../terminal/link";
 import { colors } from "@/utils/colors";
 import { useIsMobile } from "@/utils/mobile-context";
+import React from "react";
 
 export function ProjectWindow({ project }) {
   const isMobile = useIsMobile();
@@ -26,7 +27,14 @@ export function ProjectWindow({ project }) {
         <Text fontSize="xl" color={{ base: colors.highlight, md: "white" }}>
           {project.title}
         </Text>
-        <Grid templateColumns="80px auto" gap={0}>
+        <Grid templateColumns="95px auto" gap={0}>
+          {project.pTitle && (
+            <>
+              <Text color={colors.link}>TITLE:</Text>
+              <Text color={colors.link}>{project.pTitle}</Text>
+            </>
+          )}
+
           <Text>TYPE:</Text>
           <Text>{project.type}</Text>
 
@@ -34,6 +42,13 @@ export function ProjectWindow({ project }) {
             <>
               <Text>DOMAIN:</Text>
               <Text>{project.domain}</Text>
+            </>
+          )}
+
+          {project.programme && (
+            <>
+              <Text>PROGRAMME:</Text>
+              <Text>{project.programme}</Text>
             </>
           )}
 
@@ -64,12 +79,12 @@ export function ProjectWindow({ project }) {
         {project.concept({ isMobile })}
       </Stack>
 
-      {!isMobile && project.image.desktop && (
+      {!isMobile && project.image?.desktop && (
         <Center py={3}>
           <Image src={project.image.desktop.url} w={project.image.desktop.w} />
         </Center>
       )}
-      {isMobile && project.image.mobile && (
+      {isMobile && project.image?.mobile && (
         <Center py={2}>
           <Image src={project.image.mobile.url} w={project.image.mobile.w} />
         </Center>
@@ -79,11 +94,16 @@ export function ProjectWindow({ project }) {
         <Text fontWeight="500" fontSize="md">
           :: SYSTEM LOG
         </Text>
-        <Stack gap={1}>
+        <Grid templateColumns={"20px auto"} gap={0}>
           {project.systemLog.map((item, i) => {
-            return <Text key={i}>&#8250; {item}</Text>;
+            return (
+              <React.Fragment key={i}>
+                <Text>&#8250;</Text>
+                <Text>{item}</Text>
+              </React.Fragment>
+            );
           })}
-        </Stack>
+        </Grid>
       </Stack>
       <Stack>
         <Text fontWeight="500" fontSize="md">

@@ -9,12 +9,12 @@ export function WhoAmI({}) {
       <Text>
         I'm a Frontend Engineer with an interest in{" "}
         <Text color={colors.keyword} as="span">
-          creating digital places
+          creating digital environments
         </Text>{" "}
         that encourage exploration, reflection, and lingering.
       </Text>
       <Text>
-        Currently based in London, polishing the shards of my dreams . . .
+        Currently based in London, polishing the shards of my dreams ...
       </Text>
     </Stack>
   );

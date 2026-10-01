@@ -47,7 +47,7 @@ export const PROJECTS = [
     domain: "Assistive Technology",
     tools: ["Arduino", "React Native", "Figma"],
     concept: ({ isMobile }) => (
-      <Text textAlign={"justify"}>
+      <Text>
         Children with{" "}
         <Text as="span" color={"black"} bg={colors.keyword} px={1}>
           Autism Spectrum Disorder (ASD)
@@ -100,6 +100,48 @@ export const PROJECTS = [
     ],
   },
   {
+    id: "03",
+    slug: "project-03.txt",
+    title: "Dissertation",
+    pTitle:
+      "Exploring Mental Health App Use Among Individuals with Vision Loss",
+    type: "Research",
+    domain: "Accessibility",
+    programme: "MSc Disability, Design and Innovation at UCL",
+    institution: "University College London",
+    tools: ["Qualitative Research", "Thematic Analysis", "TAM"],
+    concept: ({ isMobile }) => (
+      <Text>
+        The study explores how adults with{" "}
+        <Text as="span" color="black" bg={colors.keyword} px={1}>
+          acquired vision loss
+        </Text>{" "}
+        perceive and engage with{" "}
+        <Text as="span" color="black" bg={colors.prompt} px={1}>
+          mental health apps
+        </Text>
+        . Through semi-structured interviews with UK-based participants, it
+        examines attitudes towards digital mental health support, barriers to
+        access, and the features and considerations that could make these tools
+        more accessible, inclusive, and relevant to people with vision loss.
+      </Text>
+    ),
+    systemLog: [
+      "Conducted literature review.",
+      "Designed and conducted semi-structured interviews with UK-based participants.",
+      "Performed thematic analysis to identify key themes and barriers.",
+      "Applied the Technology Acceptance Model (TAM) to analyse attitudes towards mental health apps.",
+      "Developed design recommendations around accessibility, inclusivity, privacy, and tailored support.",
+    ],
+    attachments: [
+      {
+        label: "PDF",
+        text: "research-paper.pdf",
+        href: "https://drive.google.com/file/d/1P_ss45qDt-ESM5OIafE9XMbh2f-D5k9h/view?usp=sharing",
+      },
+    ],
+  },
+  {
     id: "04",
     slug: "project-04.txt",
     title: "Dream Archives",
@@ -108,7 +150,7 @@ export const PROJECTS = [
     tools: ["Phaser", "Next.js", "Procreate", "Pixaki"],
     status: "IN PROGRESS",
     concept: ({ isMobile }) => (
-      <Text textAlign={"justify"}>
+      <Text>
         Dream Archives is an ongoing personal archive exploring{" "}
         <Text as="span" color="black" bg={colors.keyword} px={1}>
           memory, place, and atmosphere
