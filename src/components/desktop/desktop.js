@@ -112,63 +112,65 @@ export function Desktop() {
           (isMobile ? (
             <TerminalMobile />
           ) : (
-            <Box
-              position="relative"
-              w="100vw"
-              h="100vh"
-              overflow="hidden"
-              onClick={() => {
-                setActiveWindowId(null);
-                setActivationId((prev) => prev + 1);
-              }}
-            >
-              {/* Windows */}
-              {openWindows.map((window) => {
-                const definition = WINDOW_DEFINITIONS[window];
-                const Component = definition.component;
+            <Box w="100vw" h="100vh" overflow="hidden">
+              <Box
+                position="relative"
+                w={`${layout.width}px`}
+                h={`${layout.height}px`}
+                onClick={() => {
+                  setActiveWindowId(null);
+                  setActivationId((prev) => prev + 1);
+                }}
+              >
+                {/* Windows */}
+                {openWindows.map((window) => {
+                  const definition = WINDOW_DEFINITIONS[window];
+                  const Component = definition.component;
 
-                const centerX = layout.width / 2;
-                const centerY = layout.height / 2;
+                  const centerX = layout.width / 2;
+                  const centerY = layout.height / 2;
 
-                const x = centerX + definition.offsetX - definition.width / 2;
-                const y = centerY + definition.offsetY - definition.height / 2;
+                  const x = centerX + definition.offsetX - definition.width / 2;
+                  const y =
+                    centerY + definition.offsetY - definition.height / 2;
 
-                return (
-                  <Window
-                    key={window}
-                    defaultPosition={{
-                      x: x,
-                      y: y,
-                    }}
-                    title={definition.title}
-                    accessory={definition.accessory}
-                    width={`${definition.width}px`}
-                    height={`${definition.height}px`}
-                    onFocus={() => openWindow(window)}
-                    onClose={() => closeWindow(window)}
-                    focused={window === activeWindowId}
-                    shake={shakingWindowId === window}
-                    zIndex={zIndices[window]}
-                  >
-                    <Component
-                      {...definition.props}
+                  return (
+                    <Window
+                      key={window}
+                      defaultPosition={{
+                        x: x,
+                        y: y,
+                      }}
+                      title={definition.title}
+                      accessory={definition.accessory}
+                      width={`${definition.width}px`}
+                      height={`${definition.height}px`}
+                      onFocus={() => openWindow(window)}
+                      onClose={() => closeWindow(window)}
                       focused={window === activeWindowId}
-                      activationId={activationId}
-                      isWindowOpen={isWindowOpen}
-                      openWindow={openWindow}
-                      focusWindow={focusWindow}
-                    />
-                  </Window>
-                );
-              })}
+                      shake={shakingWindowId === window}
+                      zIndex={zIndices[window]}
+                    >
+                      <Component
+                        {...definition.props}
+                        focused={window === activeWindowId}
+                        activationId={activationId}
+                        isWindowOpen={isWindowOpen}
+                        openWindow={openWindow}
+                        focusWindow={focusWindow}
+                      />
+                    </Window>
+                  );
+                })}
 
-              {/* Cat */}
-              <Center h="100%" minW="1200px">
-                <CatWidget image="/cat/yawn.png" frames={8} />
-              </Center>
+                {/* Cat */}
+                <Center h="100%" minW="1200px">
+                  <CatWidget image="/cat/yawn.png" frames={8} />
+                </Center>
 
-              {/* Dock */}
-              <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
+                {/* Dock */}
+                <Dock isWindowOpen={isWindowOpen} openWindow={openWindow} />
+              </Box>
             </Box>
           ))}
       </MobileContext.Provider>
