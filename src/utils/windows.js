@@ -38,7 +38,7 @@ export const WINDOW_DEFINITIONS = {
     offsetX: 420,
     offsetY: -260,
     width: 150,
-    height: 186,
+    height: 189,
     component: ImageWidget,
   },
 

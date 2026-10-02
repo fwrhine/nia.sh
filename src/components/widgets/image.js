@@ -14,7 +14,7 @@ export function ImageWidget() {
 
   return (
     <Box border="1px solid black">
-      <Image src={randomImage} height="150px" width="150px" />
+      <Image src={randomImage} boxSize="145px" objectFit="cover" />
     </Box>
   );
 }

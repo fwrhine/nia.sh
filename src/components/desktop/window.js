@@ -110,7 +110,7 @@ export function Window({
             userSelect="none"
             onMouseDown={(e) => {
               onFocus?.();
-              
+
               drag.current.dragging = true;
               drag.current.offsetX = e.clientX - positionRef.current.x;
 
