@@ -19,9 +19,14 @@ export function Experience({}) {
         <Text>@ UCL GDI Hub</Text>
       </Grid>
       {!isMobile && (
-        <Text color={colors.highlight}>
+        <Text color={colors.help}>
           Type{" "}
-          <Text as="span" color={colors.keyword}>
+          <Text
+            as="span"
+            color={colors.command}
+            fontSize={"16px"}
+            fontWeight={"bold"}
+          >
             `cv`
           </Text>{" "}
           to download my resume.

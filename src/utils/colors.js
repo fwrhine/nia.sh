@@ -4,6 +4,8 @@ export const colors = {
   keyword: "#CAA1CF",
   highlight: "#efd8ea",
   link: "#D6B56D",
-  error: "red.300",
+  error: "#f35f82",
   boot: "#dab7b8",
+  help: "#f4b1d9",
+  command: "#f35fb8",
 };

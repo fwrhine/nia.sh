@@ -30,7 +30,9 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const [input, setInput] = useState("");
 
   const renderCommand = (command) => {
-    const projectMatch = command.match(/^projects?\s+(?:\[|\<)?(\d+)(?:\]|\>)?$/);
+    const projectMatch = command.match(
+      /^projects?\s+(?:\[|\<)?(\d+)(?:\]|\>)?$/,
+    );
 
     if (projectMatch) {
       const id = projectMatch[1].padStart(2, "0");
@@ -82,7 +84,9 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
     if (!command) return;
 
-    const projectMatch = command.match(/^projects?\s+(?:\[|\<)?(\d+)(?:\]|\>)?$/);
+    const projectMatch = command.match(
+      /^projects?\s+(?:\[|\<)?(\d+)(?:\]|\>)?$/,
+    );
 
     if (projectMatch) {
       const id = projectMatch[1].padStart(2, "0");
@@ -196,9 +200,9 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
           <Text>Last login: {loginTime} </Text>
           <Stack gap={0}>
             <Text>Welcome to nia.sh</Text>
-            <Text color={colors.highlight}>
+            <Text color={colors.help}>
               Type{" "}
-              <Text as="span" color={colors.keyword}>
+              <Text as="span" color={colors.command} fontSize={"16px"} fontWeight={"bold"}>
                 `help`
               </Text>{" "}
               to see what you can do here.

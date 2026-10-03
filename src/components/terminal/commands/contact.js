@@ -37,8 +37,8 @@ export function Contact({}) {
         </Stack>
 
         <Text color={colors.highlight}>
-          I'm open to opportunities in frontend engineering, creative technology, and
-          accessibility field!
+          I'm open to opportunities in the frontend engineering, creative
+          technology, and accessibility fields!
         </Text>
       </Stack>
     </>

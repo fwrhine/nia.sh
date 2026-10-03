@@ -12,6 +12,20 @@ export function Projects({ executeCommand }) {
 
   return (
     <Stack gap={5}>
+      {!isMobile && (
+        <Text color={colors.help}>
+          Type{" "}
+          <Text
+            as="span"
+            color={colors.command}
+            fontSize={"16px"}
+            fontWeight={"bold"}
+          >
+            `project &lsaquo;number&rsaquo;`
+          </Text>{" "}
+          for more details.
+        </Text>
+      )}
       <Stack gap={0}>
         {PROJECTS.map((project) => (
           <TerminalLink
@@ -34,16 +48,6 @@ export function Projects({ executeCommand }) {
         <>
           <ProjectWindow project={PROJECTS.find((p) => p.id === expanded)} />
         </>
-      )}
-
-      {!isMobile && (
-        <Text color={colors.highlight}>
-          Type{" "}
-          <Text as="span" color={colors.keyword}>
-            `project &lsaquo;number&rsaquo;`
-          </Text>{" "}
-          for more details.
-        </Text>
       )}
 
       {isMobile && (

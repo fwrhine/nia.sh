@@ -8,7 +8,12 @@ export function NotFound({ command }) {
         <Text color={colors.error}>Command not found: {command}</Text>
         <Text color={colors.highlight}>
           Type{" "}
-          <Text as="span" color={colors.keyword}>
+          <Text
+            as="span"
+            color={colors.command}
+            fontSize={"16px"}
+            fontWeight={"bold"}
+          >
             `help`
           </Text>{" "}
           to see what you can do here.
