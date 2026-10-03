@@ -11,7 +11,7 @@ export function WhoAmI({}) {
         <Text color={colors.keyword} as="span">
           creating digital environments
         </Text>{" "}
-        that encourage exploration, reflection, and lingering.
+        that encourage exploration and reflection.
       </Text>
       <Text>
         Currently based in London, polishing the shards of my dreams ...

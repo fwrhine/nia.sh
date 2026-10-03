@@ -145,7 +145,7 @@ export function Dock({ isWindowOpen, openWindow }) {
                 isOpen={true}
               />
             </HStack>
-            <HStack w="120px" gap={6} pb={2}>
+            <HStack w="120px" gap={8} pb={2}>
               <Box
                 w="2px"
                 h="55px"

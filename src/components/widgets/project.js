@@ -105,25 +105,27 @@ export function ProjectWindow({ project }) {
           })}
         </Grid>
       </Stack>
-      <Stack>
-        <Text fontWeight="500" fontSize="md">
-          :: ATTACHMENTS
-        </Text>
+      {project.attachments && (
+        <Stack>
+          <Text fontWeight="500" fontSize="md">
+            :: ATTACHMENTS
+          </Text>
 
-        <Stack gap={1}>
-          {project.attachments.map((attachment, i) => {
-            return (
-              <TerminalLink
-                key={i}
-                href={attachment.href}
-                label={attachment.label}
-                text={attachment.text}
-                width="60px"
-              />
-            );
-          })}
+          <Stack gap={1}>
+            {project.attachments.map((attachment, i) => {
+              return (
+                <TerminalLink
+                  key={i}
+                  href={attachment.href}
+                  label={attachment.label}
+                  text={attachment.text}
+                  width="60px"
+                />
+              );
+            })}
+          </Stack>
         </Stack>
-      </Stack>
+      )}
     </Stack>
   );
 }
