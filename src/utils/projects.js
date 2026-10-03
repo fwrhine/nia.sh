@@ -215,7 +215,7 @@ export const PROJECTS = [
           other's lives along the way...
         </Text>
         <Text>
-          <Text as="span" color={colors.link}>
+          <Text as="span" color={colors.keyword}>
             `If on a winter's night a traveler...`
           </Text>{" "}
           is a retro-inspired visual novel in early development, taking its
