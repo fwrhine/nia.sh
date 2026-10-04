@@ -50,9 +50,7 @@ export function Projects({ executeCommand }) {
         </>
       )}
 
-      {isMobile && (
-        <Text color={colors.highlight}>Tap a project to expand.</Text>
-      )}
+      {isMobile && <Text color={colors.help}>Tap a project to expand.</Text>}
     </Stack>
   );
 }
