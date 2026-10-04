@@ -18,7 +18,7 @@ export function Projects({ executeCommand }) {
           <Text
             as="span"
             color={colors.command}
-            fontSize={"16px"}
+            fontSize={"1.05rem"}
             fontWeight={"bold"}
           >
             `project &lsaquo;number&rsaquo;`

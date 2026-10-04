@@ -202,7 +202,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
             <Text>Welcome to nia.sh</Text>
             <Text color={colors.help}>
               Type{" "}
-              <Text as="span" color={colors.command} fontSize={"16px"} fontWeight={"bold"}>
+              <Text as="span" color={colors.command} fontSize={"1.05rem"} fontWeight={"bold"}>
                 `help`
               </Text>{" "}
               to see what you can do here.
