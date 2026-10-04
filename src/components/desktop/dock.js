@@ -116,7 +116,6 @@ export function Dock({ isWindowOpen, openWindow }) {
           <HStack
             bgColor="#968887"
             w="100%"
-            px={8}
             pt={3}
             pb={1}
             border="3px solid #5f5858"
@@ -124,7 +123,7 @@ export function Dock({ isWindowOpen, openWindow }) {
             borderRightColor="#968887"
             justifyContent={"space-between"}
           >
-            <Stack w="120px" />
+            <Stack w="150px" />
             <HStack gap={6}>
               <Icon
                 src="/images/icons/terminal.png"
@@ -145,21 +144,23 @@ export function Dock({ isWindowOpen, openWindow }) {
                 isOpen={true}
               />
             </HStack>
-            <HStack w="120px" gap={8} pb={2}>
+            <HStack w="150px" pb={2} gap={0}>
               <Box
                 w="2px"
                 h="55px"
                 bg="#5f5858"
                 borderRight="1px solid #b7aeaa"
               />
-              <Stack color="black" gap={0} alignItems={"end"}>
-                <Text fontSize="sm" fontWeight={"500"}>
-                  {date}
-                </Text>
-                <Text fontSize="2xl" fontWeight={"400"}>
-                  {time}
-                </Text>
-              </Stack>
+              <Center w="100%">
+                <Stack color="black" gap={0} alignItems={"end"}>
+                  <Text fontSize="sm" fontWeight={"500"}>
+                    {date}
+                  </Text>
+                  <Text fontSize="2xl" fontWeight={"400"}>
+                    {time}
+                  </Text>
+                </Stack>
+              </Center>
             </HStack>
           </HStack>
         </Box>
