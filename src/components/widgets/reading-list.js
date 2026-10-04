@@ -75,6 +75,13 @@ export function ReadingListWidget({ focused, activationId }) {
       bg="#dab7b8"
       w="100%"
       h="100%"
+      overflowY="auto"
+      css={{
+        scrollbarWidth: "none",
+        "&::-webkit-scrollbar": {
+          display: "none",
+        },
+      }}
       outline="none"
       gap={0}
     >
