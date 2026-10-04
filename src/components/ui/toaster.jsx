@@ -6,6 +6,7 @@ import {
   Portal,
   Spinner,
   Stack,
+  Text,
   Toast,
   createToaster,
 } from "@chakra-ui/react";
@@ -49,7 +50,9 @@ export const Toaster = () => {
               <Stack gap="1" flex="1" maxWidth="100%">
                 {toast.title && <Toast.Title>{toast.title}</Toast.Title>}
                 {toast.description && (
-                  <Toast.Description>{toast.description}</Toast.Description>
+                  <Toast.Description>
+                    <Text color="black">{toast.description}</Text>
+                  </Toast.Description>
                 )}
               </Stack>
               {toast.action && (
