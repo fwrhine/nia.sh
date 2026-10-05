@@ -3,7 +3,7 @@ import { Stack, Text } from "@chakra-ui/react";
 export function Todo({}) {
   return (
     <Stack gap={4}>
-      <Text>:: TODO</Text>
+      <Text>// TODO</Text>
       <Stack gap={0}>
         <Text>[ ] Fold laundry</Text>
         <Text>[ ] Text her</Text>

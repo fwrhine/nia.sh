@@ -16,6 +16,7 @@ import { Prompt } from "./prompt";
 import { downloadCV, getLoginTime } from "@/utils/utils";
 import { PROJECTS } from "@/utils/projects";
 import { Todo } from "./commands/todo";
+import { Origami } from "./commands/origami";
 
 export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
@@ -77,6 +78,9 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
       case "cat todo.txt":
         return <Todo />;
+
+      case "cat origami.txt":
+        return <Origami />;
 
       default:
         return <NotFound command={command} />;
