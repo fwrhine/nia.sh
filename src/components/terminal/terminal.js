@@ -15,6 +15,7 @@ import { NotFound } from "./commands/notfound";
 import { Prompt } from "./prompt";
 import { downloadCV, getLoginTime } from "@/utils/utils";
 import { PROJECTS } from "@/utils/projects";
+import { Todo } from "./commands/todo";
 
 export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const terminalRef = useRef(null);
@@ -73,6 +74,9 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
       case "ls":
         return <List />;
+
+      case "cat todo.txt":
+        return <Todo />;
 
       default:
         return <NotFound command={command} />;
@@ -133,6 +137,9 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
     }
   };
 
+  // Handle key down
+  const FILES = ["todo.txt", "origami.txt"];
+
   const handleKeyDown = (e) => {
     if (e.key === "ArrowUp") {
       e.preventDefault();
@@ -161,6 +168,20 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
         setHistoryIndex(newIndex);
         setInput(commandHistory[newIndex]);
       }
+    }
+
+    if (e.key === "Tab" && input.startsWith("cat ")) {
+      e.preventDefault();
+
+      const partial = input.slice(4).trim();
+
+      const match = FILES.find((file) => file.startsWith(partial));
+
+      if (match) {
+        setInput(`cat ${match}`);
+      }
+
+      return;
     }
 
     if (e.key === "Enter") {
@@ -202,7 +223,12 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
             <Text>Welcome to nia.sh</Text>
             <Text color={colors.help}>
               Type{" "}
-              <Text as="span" color={colors.command} fontSize={"1.05rem"} fontWeight={"bold"}>
+              <Text
+                as="span"
+                color={colors.command}
+                fontSize={"1.05rem"}
+                fontWeight={"bold"}
+              >
                 `help`
               </Text>{" "}
               to see what you can do here.
