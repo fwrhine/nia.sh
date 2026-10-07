@@ -19,7 +19,7 @@ export function ProjectWindow({ project }) {
     <Stack
       px={{ base: 0, md: 5 }}
       pt={{ base: 0, md: 5 }}
-      pb={7}
+      pb={{base: 0, md: 7}}
       gap={5}
       fontSize={"md"}
     >

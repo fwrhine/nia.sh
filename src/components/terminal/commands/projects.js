@@ -44,13 +44,13 @@ export function Projects({ executeCommand }) {
         ))}
       </Stack>
 
+      {isMobile && <Text color={colors.help}>Tap a project to expand.</Text>}
+
       {expanded && (
         <>
           <ProjectWindow project={PROJECTS.find((p) => p.id === expanded)} />
         </>
       )}
-
-      {isMobile && <Text color={colors.help}>Tap a project to expand.</Text>}
     </Stack>
   );
 }
