@@ -1,10 +1,4 @@
-import {
-  Grid,
-  HStack,
-  Separator,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Grid, Separator, Stack, Text } from "@chakra-ui/react";
 import { TerminalLink } from "../terminal/link";
 import { colors } from "@/utils/colors";
 import { useIsMobile } from "@/utils/mobile-context";
@@ -51,16 +45,9 @@ export function ProjectWindow({ project }) {
           )}
 
           <Text>TOOLS:</Text>
-          <HStack wrap="wrap" rowGap={0}>
-            {project.tools.map((tool, i) => {
-              return (
-                <HStack key={i}>
-                  <Text>{tool}</Text>
-                  {i < project.tools.length - 1 && <Text>•</Text>}
-                </HStack>
-              );
-            })}
-          </HStack>
+          <Text display={{base: "block", md: "none"}}>{project.tools.join(", ")}</Text>
+          <Text display={{base: "none", md: "block"}}>{project.tools.join(" • ")}</Text>
+
           {project.status && (
             <>
               <Text color={colors.link}>STATUS:</Text>
