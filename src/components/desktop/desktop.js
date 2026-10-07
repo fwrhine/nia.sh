@@ -83,9 +83,10 @@ export function Desktop() {
 
   useLayoutEffect(() => {
     const updateLayout = () => {
-      const touch = window.matchMedia("(pointer: coarse)").matches;
+      const hasTouch = navigator.maxTouchPoints > 0;
+      const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
 
-      setIsMobile(touch);
+      setIsMobile(hasTouch && !hasFinePointer);
     };
 
     setLayout({
