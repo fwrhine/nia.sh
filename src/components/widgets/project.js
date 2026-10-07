@@ -21,13 +21,13 @@ export function ProjectWindow({ project }) {
       pt={{ base: 0, md: 5 }}
       pb={7}
       gap={5}
-      fontSize={{ base: "md", md: "sm" }}
+      fontSize={"md"}
     >
       <Stack>
         <Text fontSize="xl" color={{ base: colors.highlight, md: "white" }}>
           {project.title}
         </Text>
-        <Grid templateColumns="95px auto" gap={0}>
+        <Grid templateColumns="110px auto" gap={0}>
           {project.pTitle && (
             <>
               <Text color={colors.link}>TITLE:</Text>

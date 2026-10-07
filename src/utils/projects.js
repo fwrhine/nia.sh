@@ -197,38 +197,40 @@ export const PROJECTS = [
     tools: ["Unity", "C#", "Procreate", "Pixaki"],
     status: "EARLY DEVELOPMENT",
     concept: ({ isMobile }) => (
-      <Stack gap={5}>
+      <Stack gap={1}>
         <Center>
           <Image
             src={"/images/projects/project-05.png"}
-            w={{ base: "100%", md: "60%" }}
+            w={{ base: "100%", md: "65%" }}
           />
         </Center>
-        <Text>
-          On a cold winter evening, a young man boards a long-distance train
-          bound for the countryside. The carriage is almost empty, save for a
-          young woman travelling alone. The steady motion of the train lulls
-          them to sleep, but when they wake, they find themselves sitting across
-          from each other in a carriage that seems somehow different from
-          before. Unsure whether they are awake or dreaming, the two strangers
-          must make sense of their strange journey while learning about each
-          other's lives along the way...
-        </Text>
-        <Text>
-          <Text as="span" color={colors.keyword}>
-            `If on a winter's night a traveler...`
-          </Text>{" "}
-          is a retro-inspired visual novel in early development, taking its
-          title from Italo Calvino's original work. The project is a
-          character-driven narrative exploring the unexpected connection between
-          two strangers isolated together for a period of time.
-          <br />
-          <br />
-          Coming soon!{" "}
-          <Text as="span" color={"#fe54b2"}>
-            ❤︎ ❤︎ ❤︎
+        <Stack gap={5}>
+          <Text>
+            On a cold winter evening, a young man boards a long-distance train
+            bound for the countryside. The carriage is almost empty, save for a
+            young woman travelling alone. The steady motion of the train lulls
+            them to sleep, but when they wake, they find themselves sitting
+            across from each other in a carriage that seems somehow different
+            from before. Unsure whether they are awake or dreaming, the two
+            strangers must make sense of their strange journey while learning
+            about each other's lives along the way...
           </Text>
-        </Text>
+          <Text>
+            <Text as="span" color={colors.keyword}>
+              `If on a winter's night a traveler...`
+            </Text>{" "}
+            is a retro-inspired visual novel in early development, taking its
+            title from Italo Calvino's original work. The project is a
+            character-driven narrative exploring the unexpected connection
+            between two strangers isolated together for a period of time.
+            <br />
+            <br />
+            Coming soon!{" "}
+            <Text as="span" color={"#fe54b2"}>
+              ❤︎ ❤︎ ❤︎
+            </Text>
+          </Text>
+        </Stack>
       </Stack>
     ),
     systemLog: [
