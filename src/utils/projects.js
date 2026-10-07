@@ -197,7 +197,7 @@ export const PROJECTS = [
     tools: ["Unity", "C#", "Procreate", "Pixaki"],
     status: "EARLY DEVELOPMENT",
     concept: ({ isMobile }) => (
-      <Stack gap={1}>
+      <Stack gap={0}>
         <Center>
           <Image
             src={"/images/projects/project-05.png"}
@@ -208,12 +208,11 @@ export const PROJECTS = [
           <Text>
             On a cold winter evening, a young man boards a long-distance train
             bound for the countryside. The carriage is almost empty, save for a
-            young woman travelling alone. The steady motion of the train lulls
-            them to sleep, but when they wake, they find themselves sitting
-            across from each other in a carriage that seems somehow different
-            from before. Unsure whether they are awake or dreaming, the two
-            strangers must make sense of their strange journey while learning
-            about each other's lives along the way...
+            young woman travelling alone. After falling asleep, they wake to
+            find themselves sitting across from each other in a carriage that
+            seems somehow different. Unsure whether they are awake or dreaming,
+            the two strangers must make sense of their strange journey while
+            learning about each other's lives along the way...
           </Text>
           <Text>
             <Text as="span" color={colors.keyword}>
