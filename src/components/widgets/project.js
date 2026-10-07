@@ -1,8 +1,6 @@
 import {
-  Center,
   Grid,
   HStack,
-  Image,
   Separator,
   Stack,
   Text,
@@ -19,7 +17,7 @@ export function ProjectWindow({ project }) {
     <Stack
       px={{ base: 0, md: 5 }}
       pt={{ base: 0, md: 5 }}
-      pb={{base: 0, md: 7}}
+      pb={{ base: 0, md: 7 }}
       gap={5}
       fontSize={"md"}
     >
@@ -78,18 +76,6 @@ export function ProjectWindow({ project }) {
         </Text>
         {project.concept({ isMobile })}
       </Stack>
-
-      {!isMobile && project.image?.desktop && (
-        <Center py={3}>
-          <Image src={project.image.desktop.url} w={project.image.desktop.w} />
-        </Center>
-      )}
-      {isMobile && project.image?.mobile && (
-        <Center py={2}>
-          <Image src={project.image.mobile.url} w={project.image.mobile.w} />
-        </Center>
-      )}
-
       <Stack>
         <Text fontWeight="500" fontSize="md">
           :: SYSTEM LOG
