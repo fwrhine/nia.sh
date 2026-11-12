@@ -21,7 +21,7 @@ export function Projects({ executeCommand }) {
             fontSize={"1.05rem"}
             fontWeight={"bold"}
           >
-            `project &lsaquo;number&rsaquo;`
+            `projects &lsaquo;number&rsaquo;`
           </Text>{" "}
           for more details.
         </Text>

@@ -6,7 +6,7 @@ import { Projects } from "@/components/terminal/commands/projects";
 import { WhoAmI } from "@/components/terminal/commands/whoami";
 import { Origin } from "./commands/origin";
 
-import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import { List } from "./commands/ls";
 import { Contact } from "./commands/contact";
 import { colors } from "@/utils/colors";
@@ -29,12 +29,11 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
   const [history, setHistory] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [suggestions, setSuggestions] = useState([]);
   const [input, setInput] = useState("");
 
   const renderCommand = (command) => {
-    const projectMatch = command.match(
-      /^projects?\s+(?:\[|\<)?(\d+)(?:\]|\>)?$/,
-    );
+    const projectMatch = command.match(/^projects?\s+(?:\[|<)?(\d+)(?:\]|>)?$/);
 
     if (projectMatch) {
       const id = projectMatch[1].padStart(2, "0");
@@ -62,6 +61,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
         );
 
       case "projects":
+      case "project":
         return <Projects executeCommand={executeCommand} />;
 
       case "help":
@@ -92,9 +92,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
     if (!command) return;
 
-    const projectMatch = command.match(
-      /^projects?\s+(?:\[|\<)?(\d+)(?:\]|\>)?$/,
-    );
+    const projectMatch = command.match(/^projects?\s+(?:\[|<)?(\d+)(?:\]|>)?$/);
 
     if (projectMatch) {
       const id = projectMatch[1].padStart(2, "0");
@@ -141,10 +139,24 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
     }
   };
 
-  // Handle key down
+  const COMMANDS = [
+    "whoami",
+    "work",
+    "cv",
+    "projects",
+    "contact",
+    "clear",
+    "help",
+    "cat",
+    "origin",
+    "ls",
+  ];
+
   const FILES = ["todo.txt", "origami.txt"];
 
+  // Handle key down
   const handleKeyDown = (e) => {
+    // Command history: previous
     if (e.key === "ArrowUp") {
       e.preventDefault();
 
@@ -157,8 +169,10 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
 
       setHistoryIndex(newIndex);
       setInput(commandHistory[newIndex]);
+      return;
     }
 
+    // Command history: next
     if (e.key === "ArrowDown") {
       e.preventDefault();
 
@@ -172,26 +186,51 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
         setHistoryIndex(newIndex);
         setInput(commandHistory[newIndex]);
       }
+
+      return;
     }
 
-    if (e.key === "Tab" && input.startsWith("cat ")) {
+    // Autocomplete
+    if (e.key === "Tab") {
       e.preventDefault();
 
-      const partial = input.slice(4).trim();
+      const trimmed = input.trimStart();
 
-      const match = FILES.find((file) => file.startsWith(partial));
+      // File autocomplete
+      if (trimmed.startsWith("cat")) {
+        const partial = trimmed.slice(4);
 
-      if (match) {
-        setInput(`cat ${match}`);
+        const matches = FILES.filter((file) => file.startsWith(partial));
+
+        if (matches.length === 1) {
+          setInput(`cat ${matches[0]}`);
+          setSuggestions([]);
+        } else {
+          setSuggestions(matches);
+        }
+
+        return;
+      }
+
+      // Command autocomplete
+      const matches = COMMANDS.filter((command) => command.startsWith(trimmed));
+
+      if (matches.length === 1) {
+        setInput(matches[0]);
+        setSuggestions([]);
+      } else {
+        setSuggestions(matches);
       }
 
       return;
     }
 
+    // Execute command
     if (e.key === "Enter") {
       e.preventDefault();
       executeCommand(input);
       setInput("");
+      setSuggestions([]);
     }
   };
 
@@ -210,7 +249,7 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
       top: terminalRef.current.scrollHeight,
       behavior: "smooth",
     });
-  }, [history]);
+  }, [history, suggestions]);
 
   return (
     <>
@@ -249,13 +288,17 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
               {renderCommand(command)}
             </Box>
           ))}
+
           <HStack gap={0} paddingY={5}>
             <Prompt />
 
             <input
               ref={inputRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                setInput(e.target.value);
+                setSuggestions([]);
+              }}
               onKeyDown={handleKeyDown}
               style={{
                 background: "transparent",
@@ -267,6 +310,16 @@ export function Terminal({ focused, activationId, isWindowOpen, openWindow }) {
               }}
             />
           </HStack>
+
+          {suggestions.length > 0 && (
+            <Flex wrap="wrap" columnGap={6} rowGap={4}>
+              {suggestions.map((suggestion) => (
+                <Text key={suggestion} color={colors.help}>
+                  {suggestion}
+                </Text>
+              ))}
+            </Flex>
+          )}
         </Stack>
       </Box>
     </>
